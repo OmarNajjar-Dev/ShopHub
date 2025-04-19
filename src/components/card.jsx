@@ -2,22 +2,27 @@ import { Heart } from "lucide-react";
 
 // CartPage: a single product card with hover‑scale image and a favorite button
 export default function CartPage({
-  img,
-  title,
+  id,
+  name,
   description,
   price,
-  scale = 100,               // default hover scale (e.g. 100 → scale-100)
+  category,
+  image_url,
+  scale = 150, // default hover scale (e.g. 100 → scale-100)
 }) {
   return (
     // Outer card container (enables group-hover on children)
-    <div className="h-full rounded-lg bg-white shadow-md overflow-hidden group">
-      
+    <div
+      id={id}
+      className="h-full rounded-lg bg-white shadow-md overflow-hidden group"
+      data-category={category}
+    >
       {/* Image area: relative for absolute-positioned heart button */}
       <div className="relative h-48 overflow-hidden">
         {/* Product image: scales on hover of the parent group */}
         <img
-          src={img}
-          alt={title}
+          src={image_url}
+          alt={name}
           className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-${scale}`}
         />
         {/* Favorite (heart) button in the top‑right */}
@@ -29,7 +34,7 @@ export default function CartPage({
       {/* Content area: padding + flex layout */}
       <div className="p-4 flex flex-col gap-2">
         {/* Product title */}
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h3 className="text-lg font-semibold">{name}</h3>
         {/* Short description */}
         <p className="text-gray-600 text-sm">{description}</p>
         {/* Price + Add to Cart button */}
@@ -40,7 +45,6 @@ export default function CartPage({
           </button>
         </div>
       </div>
-      
     </div>
   );
 }

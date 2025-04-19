@@ -5,7 +5,7 @@ import ProductListPage from "./pages/ProductListPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import CartPage from "./pages/CartPage";
+import CartPage from "./pages/CardPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import NotFound from "./pages/NotFound";
