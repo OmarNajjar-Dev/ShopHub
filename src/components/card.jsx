@@ -8,7 +8,7 @@ export default function CartPage({
   price,
   category,
   image_url,
-  scale = 150, // default hover scale (e.g. 100 → scale-100)
+  scale = 100, // default hover scale (e.g. 100 → scale-100)
 }) {
   return (
     // Outer card container (enables group-hover on children)
@@ -18,7 +18,7 @@ export default function CartPage({
       data-category={category}
     >
       {/* Image area: relative for absolute-positioned heart button */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-48">
         {/* Product image: scales on hover of the parent group */}
         <img
           src={image_url}
@@ -40,7 +40,7 @@ export default function CartPage({
         {/* Price + Add to Cart button */}
         <div className="mt-4 flex items-center justify-between">
           <span className="text-lg font-bold">${price}</span>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
             Add to Cart
           </button>
         </div>
