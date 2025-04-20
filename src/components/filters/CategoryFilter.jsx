@@ -1,20 +1,19 @@
-import {categories} from "../../lib/data.js";
+import { categories } from "../../lib/data.js";
 
-export function CategoryFilter({ selectedCategory, onCategoryChange }) {
+export default function CategoryFilter({ selectedCategory, onCategoryChange }) {
   return (
     <div>
-      <label
-        htmlFor="category"
-        className="block text-sm font-medium text-gray-700 mb-2"
-      >
+      {/* Label for the category filter */}
+      <label className="block text-sm font-medium text-gray-700 mb-2">
         Category
       </label>
+
+      {/* Dropdown for selecting a category */}
       <select
-        id="category"
         name="category"
+        className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus-ring-blue-500 px-2"
         value={selectedCategory}
         onChange={(e) => onCategoryChange(e.target.value)}
-        className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus-ring-blue-500"
       >
         <option value="">All Categories</option>
         {categories.map((category) => (

@@ -1,17 +1,39 @@
 import Card from "./Card";
 import { initialProducts } from "../lib/data";
 
-export default function CartList({ selectedCategory }) {
+// CardList: renders product cards filtered by the given criteria
+export default function CardList({ filterCriteria }) {
+  // Destructure the active filters
+  const { selectedCategory, selectedPrice, searchQuery } = filterCriteria;
+
+  // Returns true if a product matches all filters
+  const filterProduct = (product) => {
+    // 1. Category filter: either “All” or exact match
+    const matchesCategory =
+      selectedCategory === "" || product.category === selectedCategory;
+
+    // 2. Price filter: min and max bounds
+    const matchesPrice =
+      (!selectedPrice.min || product.price >= selectedPrice.min) &&
+      (!selectedPrice.max || product.price <= selectedPrice.max);
+
+    // 3. Search filter: case‑insensitive name match
+    const matchesSearch =
+      searchQuery === "" ||
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    // Only include if it passes all three
+    return matchesCategory && matchesPrice && matchesSearch;
+  };
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gray-50">
-      <h1 className="text-3xl font-bold text-center mb-12"></h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {initialProducts
-          .filter((product) => selectedCategory === "" || product.category === selectedCategory)
-          .map((product) => (
-            <Card key={product.id} {...product} />
-          ))}
-      </div>
-    </div>
+    <>
+      {initialProducts
+        .filter(filterProduct) // apply filters
+        .map((product) => (
+          <Card key={product.id} {...product} />
+        ))}
+    </>
   );
 }

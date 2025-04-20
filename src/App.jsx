@@ -5,14 +5,12 @@ import ProductListPage from "./pages/ProductListPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import CartPage from "./pages/CardPage";
+import CategoriesPage from "./pages/CategoriesPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import NotFound from "./pages/NotFound";
 
-import ProtectedRoute from "./components/ProtectedRoute";
-
-function App() {
+export default function App() {
   return (
     <Router>
       <Routes>
@@ -21,14 +19,14 @@ function App() {
         <Route path="/products/:id" element={<ProductDetailPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route
           path="/checkout"
           element={
-            <ProtectedRoute>
+          
               <CheckoutPage />
-            </ProtectedRoute>
+          
           }
         />
         <Route path="*" element={<NotFound />} />
@@ -36,5 +34,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;
