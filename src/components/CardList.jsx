@@ -2,7 +2,11 @@ import Card from "./Card";
 import { initialProducts } from "../lib/data";
 
 // CardList: renders product cards filtered by the given criteria
-export default function CardList({ filterCriteria }) {
+export default function CardList({
+  filterCriteria,
+  favorites,
+  toggleFavorite,
+}) {
   // Destructure the active filters
   const { selectedCategory, selectedPrice, searchQuery } = filterCriteria;
 
@@ -32,7 +36,12 @@ export default function CardList({ filterCriteria }) {
       {initialProducts
         .filter(filterProduct) // apply filters
         .map((product) => (
-          <Card key={product.id} {...product} />
+          <Card
+            key={product.id}
+            product={product}
+            isFavorite={favorites.some((fav) => fav.id === product.id)}
+            toggleFavorite={toggleFavorite}
+          />
         ))}
     </>
   );

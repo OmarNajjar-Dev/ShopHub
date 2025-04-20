@@ -2,7 +2,7 @@ import CardList from "../components/CardList";
 import ProductFilterBar from "../components/filters/ProductFilterBar";
 import { useState } from "react";
 
-export default function CategoriesPage() {
+export default function CategoriesPage({ favorites, toggleFavorite }) {
   // State to manage the selected filters (category, price, and search query)
   const [filterCriteria, setFilterCriteria] = useState({
     selectedCategory: "", // Initially no category is selected
@@ -38,7 +38,11 @@ export default function CategoriesPage() {
 
         {/* CardList displays the products based on the applied filters */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <CardList filterCriteria={filterCriteria} />
+          <CardList
+            filterCriteria={filterCriteria}
+            favorites={favorites}
+            toggleFavorite={toggleFavorite}
+          />
         </div>
       </div>
     </main>

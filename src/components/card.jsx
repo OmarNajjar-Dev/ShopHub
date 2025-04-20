@@ -1,13 +1,13 @@
 import { Heart } from "lucide-react";
 
 export default function Card({
-  id,
-  name,
-  description,
-  price,
-  image_url,
+  product,
+  isFavorite,
+  toggleFavorite, // function to toggle favorite status
   scale = 100, // default hover scale (e.g. 100 → scale-100)
 }) {
+  const { id, name, description, price, image_url } = product;
+
   return (
     // Outer card container (enables hover effects on child elements)
     <div
@@ -23,8 +23,15 @@ export default function Card({
           className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-${scale}`}
         />
         {/* Heart button (favorite) in the top-right corner */}
-        <button className="absolute top-2 right-2 p-2 rounded-full bg-white shadow hover:bg-gray-200">
-          <Heart className="h-5 w-5 text-gray-600" />
+        <button
+          className="absolute top-2 right-2 p-2 rounded-full bg-white shadow hover:bg-gray-200 cursor-pointer"
+          onClick={() => toggleFavorite(product)}
+        >
+          <Heart
+            className={`h-5 w-5 ${
+              isFavorite ? "text-red-500 fill-red-500" : "text-gray-600"
+            }`}
+          />
         </button>
       </div>
 

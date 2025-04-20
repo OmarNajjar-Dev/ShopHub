@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 
-// Lazy loaded pages
+// Lazy loaded pages (for better performance)
 const HomePage = lazy(() => import("./pages/HomePage"));
 const SignIn = lazy(() => import("./pages/auth/SignIn"));
 const SignUp = lazy(() => import("./pages/auth/SignUp"));
@@ -12,12 +12,24 @@ const CartPage = lazy(() => import("./pages/CartPage"));
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-import ProtectedRoute from "./components/ProtectedRoute"; // For protected pages like checkout
+import ProtectedRoute from "./components/ProtectedRoute"; // For pages that require authentication
 
 function App() {
+  // Global state to manage the favorite products
+  const [favorites, setFavorites] = useState([]);
+
+  // Function to add or remove a product from favorites
+  const toggleFavorite = (product) => {
+    setFavorites((prev) =>
+      prev.find((item) => item.id === product.id)
+        ? prev.filter((item) => item.id !== product.id)
+        : [...prev, product]
+    );
+  };
+
   return (
     <Router>
-      {/* Suspense will show fallback (e.g. "Loading...") while lazy components load */}
+      {/* Suspense fallback will be shown while lazy-loaded components are being fetched */}
       <Suspense
         fallback={
           <div className="flex justify-center items-center h-screen">
@@ -28,20 +40,36 @@ function App() {
         }
       >
         <Routes>
-          {/* Main public pages */}
+          {/* Main public routes */}
           <Route path="/" element={<HomePage />} />
-          <Route path="/categories" element={<CategoriesPage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route
+            path="/categories"
+            element={
+              <CategoriesPage
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <FavoritesPage
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            }
+          />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/cart" element={<CartPage />} />
 
-          {/* Auth routes under /auth */}
+          {/* Authentication routes grouped under /auth */}
           <Route path="/auth">
             <Route path="signin" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
           </Route>
 
-          {/* Protected page */}
+          {/* Protected route: only accessible if user is authenticated */}
           <Route
             path="/checkout"
             element={
@@ -51,7 +79,7 @@ function App() {
             }
           />
 
-          {/* Not found fallback */}
+          {/* Catch-all route for undefined paths */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
