@@ -3,7 +3,7 @@ import { Search, Heart, ShoppingCart, User, Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [cartItems] = useState(3); // Example cart count
+  const [cartItems, setCartItems] = useState(3); // Example cart count
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const handleSearch = (e) => {
@@ -31,7 +31,7 @@ export default function Header() {
             </div>
             
             {/* Desktop view controls */}
-            <div className="hidden sm:flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-4">
               <div className="relative">
                 <form onSubmit={handleSearch}>
                   <input 
@@ -44,7 +44,7 @@ export default function Header() {
                   />
                   <button 
                     type="submit" 
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                     aria-label="Submit search"
                   >
                     <Search className="w-5 h-5" />
@@ -71,7 +71,7 @@ export default function Header() {
             </div>
             
             {/* Mobile controls */}
-            <div className="flex items-center space-x-2 sm:hidden">
+            <div className="flex items-center space-x-2 md:hidden">
               {/* Only show search icon when menu is closed */}
               {!mobileMenuOpen && (
                 <a className="text-gray-600 hover:text-gray-900 p-1" href="#" onClick={(e) => {
