@@ -7,7 +7,7 @@ export default function Card({
   scale = 100, // default hover scale (e.g. 100 → scale-100)
 }) {
   const { id, name, description, price, image_url } = product;
-
+  
   return (
     // Outer card container (enables hover effects on child elements)
     <div

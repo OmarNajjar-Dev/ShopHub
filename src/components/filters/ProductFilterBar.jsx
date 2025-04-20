@@ -1,8 +1,6 @@
 import CategoryFilter from "./CategoryFilter";
 import PriceFilter from "./PriceFilter";
 import ProductSearch from "./ProductSearch";
-import debounce from "lodash/debounce";
-import { useCallback } from "react";
 
 export default function ProductFilterBar({
   filterCriteria,
