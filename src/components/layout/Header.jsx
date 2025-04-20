@@ -2,15 +2,9 @@ import { useState } from "react";
 import { Search, Heart, ShoppingCart, User, Menu, X } from "lucide-react";
 
 export default function Header() {
-  const [searchQuery, setSearchQuery] = useState("");
   const [cartItems, setCartItems] = useState(3); // Example cart count
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    console.log("Searching for:", searchQuery);
-    // Search logic would go here
-  };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -49,26 +43,6 @@ export default function Header() {
 
             {/* Desktop view controls */}
             <div className="hidden md:flex items-center space-x-4">
-              <div className="relative">
-                <form onSubmit={handleSearch}>
-                  <input
-                    type="text"
-                    placeholder="Search products..."
-                    className="w-64 px-4 py-1 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    aria-label="Search products"
-                  />
-                  <button
-                    type="submit"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                    aria-label="Submit search"
-                  >
-                    <Search className="w-5 h-5" />
-                  </button>
-                </form>
-              </div>
-
               <a
                 className="text-gray-600 hover:text-gray-900"
                 href="/favorites"
@@ -174,27 +148,6 @@ export default function Header() {
             </div>
 
             <div className="pt-4 pb-3 border-t border-gray-200">
-              {/* Mobile Search */}
-              <div className="px-4 mb-4">
-                <form onSubmit={handleSearch} className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search products..."
-                    className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    aria-label="Search products"
-                  />
-                  <button
-                    type="submit"
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                    aria-label="Submit search"
-                  >
-                    <Search className="w-5 h-5" />
-                  </button>
-                </form>
-              </div>
-
               {/* Mobile Action Icons */}
               <div className="px-4 flex justify-around">
                 <a
