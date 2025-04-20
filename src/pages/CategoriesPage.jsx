@@ -6,7 +6,7 @@ export default function CategoriesPage() {
   // State to manage the selected filters (category, price, and search query)
   const [filterCriteria, setFilterCriteria] = useState({
     selectedCategory: "", // Initially no category is selected
-    selectedPrice: { min: 0, max: "" }, // Default price range (min: 0, no max limit)
+    selectedPrice: { min: "", max: "" }, // Default price range (no min, no max)
     searchQuery: "", // Initially no search query
   });
 

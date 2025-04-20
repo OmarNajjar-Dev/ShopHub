@@ -29,7 +29,7 @@ export default function Card({
       </div>
 
       {/* Content section: padding and flex layout for text */}
-      <div className="p-4 flex flex-col flex-1 gap-2">
+      <div className="p-4 flex flex-col flex-grow gap-2">
         {/* Product name/title */}
         <h3 className="text-lg font-semibold">{name}</h3>
         {/* Short product description */}

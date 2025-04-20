@@ -29,6 +29,7 @@ export default function PriceFilter({ selectedPrice, onPriceChange }) {
           onChange={
             (e) => onPriceChange({ ...selectedPrice, max: e.target.value }) // Update max price
           }
+          min="0" // Ensures minimum value is 0
         />
       </div>
     </div>
