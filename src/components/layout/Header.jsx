@@ -1,81 +1,171 @@
-const Header = () => {
+import { useState } from 'react';
+import { Search, Heart, ShoppingCart, User, Menu, X } from 'lucide-react';
+
+export default function Header() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [cartItems] = useState(3); // Example cart count
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log("Searching for:", searchQuery);
+    // Search logic would go here
+  };
+  
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+  
   return (
-    <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center space-x-8">
-            <a href="/" className="text-xl font-bold text-gray-800">ShopHub</a>
-            <div className="hidden sm:flex space-x-6">
-              <a href="/" className="text-gray-900 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-              <a href="/categories" className="text-gray-900 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium">Categories</a>
-              <a href="/contact" className="text-gray-900 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+    <header className="relative">
+      <nav className="bg-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <a className="text-xl font-bold text-gray-800" href="/">ShopHub</a>
+              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                <a className="text-gray-900 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium" href="/">Home</a>
+                <a className="text-gray-900 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium" href="/categories">Categories</a>
+                <a className="text-gray-900 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium" href="/contact">Contact</a>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search products..."
-                className="w-64 px-4 py-1 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="lucide lucide-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="M21 21l-4.3-4.3" />
-              </svg>
+            
+            {/* Desktop view controls */}
+            <div className="hidden sm:flex items-center space-x-4">
+              <div className="relative">
+                <form onSubmit={handleSearch}>
+                  <input 
+                    type="text" 
+                    placeholder="Search products..." 
+                    className="w-64 px-4 py-1 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    aria-label="Search products"
+                  />
+                  <button 
+                    type="submit" 
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    aria-label="Submit search"
+                  >
+                    <Search className="w-5 h-5" />
+                  </button>
+                </form>
+              </div>
+              
+              <a className="text-gray-600 hover:text-gray-900" href="/favorites" aria-label="View favorites">
+                <Heart className="w-6 h-6" />
+              </a>
+              
+              <a className="text-gray-600 hover:text-gray-900 relative" href="/cart" aria-label="View shopping cart">
+                <ShoppingCart className="w-6 h-6" />
+                {cartItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItems}
+                  </span>
+                )}
+              </a>
+              
+              <a className="text-gray-600 hover:text-gray-900" href="/auth" aria-label="View account">
+                <User className="w-6 h-6" />
+              </a>
             </div>
-            <a href="/favorites" className="text-gray-600 hover:text-gray-900">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="lucide lucide-heart w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
+            
+            {/* Mobile controls */}
+            <div className="flex items-center space-x-2 sm:hidden">
+              {/* Only show search icon when menu is closed */}
+              {!mobileMenuOpen && (
+                <a className="text-gray-600 hover:text-gray-900 p-1" href="#" onClick={(e) => {
+                  e.preventDefault();
+                  setMobileMenuOpen(true);
+                }} aria-label="Search">
+                  <Search className="w-6 h-6" />
+                </a>
+              )}
+              
+              {/* Only show cart icon when menu is closed */}
+              {!mobileMenuOpen && (
+                <a className="text-gray-600 hover:text-gray-900 p-1 relative" href="/cart" aria-label="View shopping cart">
+                  <ShoppingCart className="w-6 h-6" />
+                  {cartItems > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {cartItems}
+                    </span>
+                  )}
+                </a>
+              )}
+              
+              {/* Mobile menu button */}
+              <button 
+                onClick={toggleMobileMenu}
+                className="text-gray-500 hover:text-gray-700 focus:outline-none"
+                aria-expanded={mobileMenuOpen}
+                aria-label="Toggle mobile menu"
               >
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-              </svg>
-            </a>
-
-            <a href="/cart" className="text-gray-600 hover:text-gray-900 relative">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="lucide lucide-shopping-cart w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <circle cx="8" cy="21" r="1" />
-                <circle cx="19" cy="21" r="1" />
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-              </svg>
-            </a>
-
-            <a href="/auth" className="text-gray-600 hover:text-gray-900">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="lucide lucide-user w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-            </a>
+                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+        
+        {/* Mobile menu, show/hide based on menu state */}
+        {mobileMenuOpen && (
+          <div className="sm:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <a className="text-gray-900 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium" href="/">Home</a>
+              <a className="text-gray-900 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium" href="/categories">Categories</a>
+              <a className="text-gray-900 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium" href="/contact">Contact</a>
+            </div>
+            
+            <div className="pt-4 pb-3 border-t border-gray-200">
+              {/* Mobile Search */}
+              <div className="px-4 mb-4">
+                <form onSubmit={handleSearch} className="relative">
+                  <input 
+                    type="text" 
+                    placeholder="Search products..." 
+                    className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    aria-label="Search products"
+                  />
+                  <button 
+                    type="submit" 
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    aria-label="Submit search"
+                  >
+                    <Search className="w-5 h-5" />
+                  </button>
+                </form>
+              </div>
+              
+              {/* Mobile Action Icons */}
+              <div className="px-4 flex justify-around">
+                <a className="flex flex-col items-center text-gray-600 hover:text-gray-900 p-2" href="/favorites" aria-label="View favorites">
+                  <Heart className="w-6 h-6" />
+                  <span className="text-xs mt-1">Favorites</span>
+                </a>
+                
+                <a className="flex flex-col items-center text-gray-600 hover:text-gray-900 p-2 relative" href="/cart" aria-label="View shopping cart">
+                  <div className="relative">
+                    <ShoppingCart className="w-6 h-6" />
+                    {cartItems > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                        {cartItems}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-xs mt-1">Cart</span>
+                </a>
+                
+                <a className="flex flex-col items-center text-gray-600 hover:text-gray-900 p-2" href="/auth" aria-label="View account">
+                  <User className="w-6 h-6" />
+                  <span className="text-xs mt-1">Account</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
   );
-};
-
-export default Header;
+}
