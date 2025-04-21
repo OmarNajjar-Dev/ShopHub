@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
 import debounce from "lodash/debounce";
 
 export default function ProductSearch({ searchQuery, onSearchChange }) {
@@ -9,10 +9,11 @@ export default function ProductSearch({ searchQuery, onSearchChange }) {
 
   // Create a debounced version of onSearchChange (400ms delay)
   // This ensures that the parent function is not called too frequently
-  const debouncedChange = useCallback(
-    debounce((value) => {
-      onSearchChange(value); // Call the parent-provided function with the updated value
-    }, 400),
+  const debouncedChange = useMemo(
+    () =>
+      debounce((value) => {
+        onSearchChange(value); // Call the parent-provided function with the updated value
+      }, 400),
     [onSearchChange] // Dependency array ensures the debounced function updates if onSearchChange changes
   );
 

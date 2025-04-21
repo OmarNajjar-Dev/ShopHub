@@ -17,15 +17,20 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
   // Global state to manage favorite products
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem("favorite")) ?? []);
 
   // Function to add or remove a product from favorites
   const toggleFavorite = (product) => {
-    setFavorites((prev) =>
-      prev.find((item) => item.id === product.id)
+    setFavorites((prev) => {
+      const updatedFavorites = prev.find((item) => item.id === product.id)
         ? prev.filter((item) => item.id !== product.id)
-        : [...prev, product]
-    );
+        : [...prev, product];
+
+      // Save the updated favorites to localStorage
+      localStorage.setItem("favorite", JSON.stringify(updatedFavorites));
+
+      return updatedFavorites; // return the updated favorites to set the state
+    });
   };
 
   return (
