@@ -1,13 +1,14 @@
-import { categories } from "../../lib/data.js";
+import { categories } from "../../lib/data.js"; 
+import PropTypes from "prop-types"; 
 
-export default function CategoryFilter({ selectedCategory, onCategoryChange }) {
+function CategoryFilter({ selectedCategory, onCategoryChange }) {
   return (
     <div>
       {/* Label for the category filter */}
       <label className="block text-sm font-medium text-gray-700 mb-2">
         Category
       </label>
-
+      
       {/* Dropdown for selecting a category */}
       <select
         name="category"
@@ -25,3 +26,10 @@ export default function CategoryFilter({ selectedCategory, onCategoryChange }) {
     </div>
   );
 }
+
+CategoryFilter.propTypes = {
+  selectedCategory: PropTypes.string.isRequired,
+  onCategoryChange: PropTypes.func.isRequired,
+};
+
+export default CategoryFilter;

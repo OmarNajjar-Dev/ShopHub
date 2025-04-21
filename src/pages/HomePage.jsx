@@ -24,10 +24,12 @@ export default function HomePage() {
               <p className="text-xl md:text-2xl mb-8">
                 Discover amazing products at great prices
               </p>
+              <a href="/categories">
               <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold flex items-center">
                 <ShoppingBag className="mr-2" />
                 Start Shopping
               </button>
+              </a>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
-import React, { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Layout from "./components/layout/Layout";
+import Layout from "./components/layout/layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 // Lazy loaded pages (for better performance)
@@ -18,6 +18,8 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 export default function App() {
   // Global state to manage favorite products
   const [favorites, setFavorites] = useState([]);
+  // Global state for cart items
+  const [cartItems, setCartItems] = useState([]);
 
   // Function to add or remove a product from favorites
   const toggleFavorite = (product) => {
@@ -25,6 +27,35 @@ export default function App() {
       prev.find((item) => item.id === product.id)
         ? prev.filter((item) => item.id !== product.id)
         : [...prev, product]
+    );
+  };
+
+  // Function to add item to cart
+  const addToCart = (product, quantity = 1) => {
+    setCartItems((prev) => {
+      const existingItem = prev.find((item) => item.id === product.id);
+      if (existingItem) {
+        return prev.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      }
+      return [...prev, { ...product, quantity }];
+    });
+  };
+
+  // Function to remove item from cart
+  const removeFromCart = (productId) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== productId));
+  };
+
+  // Function to update cart item quantity
+  const updateCartItemQuantity = (productId, quantity) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === productId ? { ...item, quantity } : item
+      )
     );
   };
 
@@ -41,14 +72,24 @@ export default function App() {
       >
         <Routes>
           {/* Main public routes */}
-          <Route element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
+          <Route element={<Layout cartItems={cartItems} />}>
+            <Route 
+              path="/" 
+              element={
+                <HomePage 
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                  addToCart={addToCart}
+                />
+              } 
+            />
             <Route
               path="/categories"
               element={
                 <CategoriesPage
                   favorites={favorites}
                   toggleFavorite={toggleFavorite}
+                  addToCart={addToCart}
                 />
               }
             />
@@ -58,11 +99,21 @@ export default function App() {
                 <FavoritesPage
                   favorites={favorites}
                   toggleFavorite={toggleFavorite}
+                  addToCart={addToCart}
                 />
               }
             />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/cart" element={<CartPage />} />
+            <Route 
+              path="/cart" 
+              element={
+                <CartPage 
+                  cartItems={cartItems}
+                  updateCartItemQuantity={updateCartItemQuantity}
+                  removeFromCart={removeFromCart}
+                />
+              } 
+            />
 
             {/* Authentication routes */}
             <Route path="/auth/signin" element={<SignIn />} />
@@ -73,7 +124,7 @@ export default function App() {
               path="/checkout"
               element={
                 <ProtectedRoute>
-                  <CheckoutPage />
+                  <CheckoutPage cartItems={cartItems} />
                 </ProtectedRoute>
               }
             />

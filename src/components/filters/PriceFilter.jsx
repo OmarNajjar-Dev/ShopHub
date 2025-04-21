@@ -1,7 +1,9 @@
+import PropTypes from "prop-types";
+
 export default function PriceFilter({ selectedPrice, onPriceChange }) {
   return (
     <div>
-      {/* Label for the price filter (currently empty) */}
+      {/* Label for the price filter */}
       <label className="block text-sm font-medium text-gray-700 mb-2">
         Price Range
       </label>
@@ -19,7 +21,7 @@ export default function PriceFilter({ selectedPrice, onPriceChange }) {
           }
           min="0" // Ensures minimum value is 0
         />
-
+        
         {/* Input field for the maximum price */}
         <input
           type="number"
@@ -35,3 +37,15 @@ export default function PriceFilter({ selectedPrice, onPriceChange }) {
     </div>
   );
 }
+
+PriceFilter.propTypes = {
+  selectedPrice: PropTypes.shape({
+    min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    max: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  }),
+  onPriceChange: PropTypes.func.isRequired
+};
+
+PriceFilter.defaultProps = {
+  selectedPrice: { min: 0, max: "" }
+};
