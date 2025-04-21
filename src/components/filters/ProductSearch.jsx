@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { useState, useEffect, useCallback } from "react";
 import debounce from "lodash/debounce";
 

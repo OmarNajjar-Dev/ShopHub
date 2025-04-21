@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import CardList from "../components/CardList";
 import ProductFilterBar from "../components/filters/ProductFilterBar";
 import { useState } from "react";

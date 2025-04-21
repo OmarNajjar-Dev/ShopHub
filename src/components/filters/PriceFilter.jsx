@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 export default function PriceFilter({ selectedPrice, onPriceChange }) {
   return (
     <div>

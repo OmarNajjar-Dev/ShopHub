@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Search, Heart, ShoppingCart, User, Menu, X } from "lucide-react";
 
 export default function Header() {
+  // eslint-disable-next-line no-unused-vars
   const [cartItems, setCartItems] = useState(3); // Example cart count
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);

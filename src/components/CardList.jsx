@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import Card from "./Card";
 import { initialProducts } from "../lib/data";
 

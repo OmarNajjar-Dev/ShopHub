@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import CategoryFilter from "./CategoryFilter";
 import PriceFilter from "./PriceFilter";
 import ProductSearch from "./ProductSearch";

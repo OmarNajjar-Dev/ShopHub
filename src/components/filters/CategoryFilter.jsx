@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { categories } from "../../lib/data.js";
 
 export default function CategoryFilter({ selectedCategory, onCategoryChange }) {

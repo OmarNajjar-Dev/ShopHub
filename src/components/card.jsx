@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { Heart } from "lucide-react";
 
 export default function Card({
