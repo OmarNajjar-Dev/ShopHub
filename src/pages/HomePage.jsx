@@ -1,4 +1,8 @@
 import { ShoppingBag } from "lucide-react";
+import ShoppingStreet from "../assets/images/shopping-street.webp";
+import ElectronicsDevices from "../assets/images/electronics-devices.webp";
+import FashionClothing from "../assets/images/fashion-clothing.webp";
+import HomeLivingRoom from "../assets/images/home-living-room.webp";
 
 export default function HomePage() {
   return (
@@ -8,10 +12,10 @@ export default function HomePage() {
         <div
           className="relative bg-cover bg-center h-96 md:h-[600px]"
           style={{
-            backgroundImage: `url("https://via.placeholder.com/1200x600?text=Welcome+to+ShopHub")`,
+            backgroundImage: `url(${ShoppingStreet})`,
           }}
         >
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+          <div className="absolute inset-0 bg-black/50"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
             <div className="text-white">
               <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -37,11 +41,11 @@ export default function HomePage() {
             {/* Electronics Category */}
             <div className="relative h-64 rounded-lg overflow-hidden cursor-pointer group">
               <img
-                src="https://via.placeholder.com/400x320?text=Electronics"
+                src={ElectronicsDevices}
                 alt="Electronics"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <h3 className="text-white text-2xl font-bold">Electronics</h3>
               </div>
             </div>
@@ -49,11 +53,11 @@ export default function HomePage() {
             {/* Fashion Category */}
             <div className="relative h-64 rounded-lg overflow-hidden cursor-pointer group">
               <img
-                src="https://via.placeholder.com/400x320?text=Fashion"
+                src={FashionClothing}
                 alt="Fashion"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <h3 className="text-white text-2xl font-bold">Fashion</h3>
               </div>
             </div>
@@ -61,11 +65,11 @@ export default function HomePage() {
             {/* Home & Living Category */}
             <div className="relative h-64 rounded-lg overflow-hidden cursor-pointer group">
               <img
-                src="https://via.placeholder.com/400x320?text=Home+%26+Living"
+                src={HomeLivingRoom}
                 alt="Home & Living"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <h3 className="text-white text-2xl font-bold">Home & Living</h3>
               </div>
             </div>
