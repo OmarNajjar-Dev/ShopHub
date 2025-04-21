@@ -1,11 +1,8 @@
-// MobileNav.jsx
-// Renders the collapsible mobile navigation menu
 import { Heart, ShoppingCart, User } from "lucide-react";
 import NavLinks from "./NavLinks";
 import CartBadge from "./CartBadge";
-import PropTypes from "prop-types";
 
-function MobileNav({ cartItems }) {
+export default function MobileNav({ cartItems }) {
   return (
     <div className="md:hidden">
       <div className="px-2 pt-2 pb-3 space-y-1">
@@ -41,9 +38,3 @@ function MobileNav({ cartItems }) {
     </div>
   );
 }
-
-MobileNav.propTypes = {
-  cartItems: PropTypes.number.isRequired,
-};
-
-export default MobileNav;

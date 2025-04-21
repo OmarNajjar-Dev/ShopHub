@@ -1,12 +1,9 @@
-// DesktopIcons.jsx
-// Renders action icons (Favorites, Cart, Account) for desktop view
 import { Heart, ShoppingCart, User } from "lucide-react";
 import CartBadge from "./CartBadge";
-import PropTypes from "prop-types";
 
 export default function DesktopIcons({ cartItems }) {
   return (
-    <div className= "hidden md:flex items-center space-x-4">
+    <div className= "hidden sm:flex items-center space-x-4">
       <a href="/favorites" aria-label="View favorites" className="text-gray-600 hover:text-gray-900">
         <Heart className="w-6 h-6" />
       </a>
@@ -20,8 +17,3 @@ export default function DesktopIcons({ cartItems }) {
     </div>
     );  
 }
-
-DesktopIcons.propTypes = {
-  cartItems: PropTypes.number.isRequired,
-}
-

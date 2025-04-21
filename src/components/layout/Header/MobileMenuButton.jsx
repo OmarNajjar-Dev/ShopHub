@@ -1,7 +1,4 @@
-// MobileMenuButton.jsx
-// Toggles the mobile menu (hamburger or close icon)
 import { Menu, X } from "lucide-react";
-import PropTypes from "prop-types";
 
 export default function MobileMenuButton({ isOpen, toggle }) {
   return (
@@ -15,8 +12,3 @@ export default function MobileMenuButton({ isOpen, toggle }) {
     </button>
   );
 }
-
-MobileMenuButton.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
-};
