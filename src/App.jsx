@@ -65,8 +65,10 @@ export default function App() {
             <Route path="/cart" element={<CartPage />} />
 
             {/* Authentication routes */}
-            <Route path="/auth/signin" element={<SignIn />} />
-            <Route path="/auth/signup" element={<SignUp />} />
+            <Route path="/auth">
+              <Route path="signin" element={<SignIn />} />
+              <Route path="signup" element={<SignUp />} />
+            </Route>
 
             {/* Protected route: only accessible if user is authenticated */}
             <Route
