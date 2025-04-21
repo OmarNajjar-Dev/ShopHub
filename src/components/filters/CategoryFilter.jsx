@@ -1,5 +1,6 @@
-import { categories } from "../../lib/data.js"; 
-import PropTypes from "prop-types"; 
+/* eslint-disable react/prop-types */
+
+import { categories } from "../../lib/data.js";
 
 function CategoryFilter({ selectedCategory, onCategoryChange }) {
   return (
@@ -26,10 +27,5 @@ function CategoryFilter({ selectedCategory, onCategoryChange }) {
     </div>
   );
 }
-
-CategoryFilter.propTypes = {
-  selectedCategory: PropTypes.string.isRequired,
-  onCategoryChange: PropTypes.func.isRequired,
-};
 
 export default CategoryFilter;

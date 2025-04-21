@@ -17,17 +17,24 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
   // Global state to manage favorite products
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorite")) ?? []
+  );
   // Global state for cart items
   const [cartItems, setCartItems] = useState([]);
 
   // Function to add or remove a product from favorites
   const toggleFavorite = (product) => {
-    setFavorites((prev) =>
-      prev.find((item) => item.id === product.id)
+    setFavorites((prev) => {
+      const updatedFavorites = prev.find((item) => item.id === product.id)
         ? prev.filter((item) => item.id !== product.id)
-        : [...prev, product]
-    );
+        : [...prev, product];
+
+      // Save the updated favorites to localStorage
+      localStorage.setItem("favorite", JSON.stringify(updatedFavorites));
+
+      return updatedFavorites; // return the updated favorites to set the state
+    });
   };
 
   // Function to add item to cart
@@ -53,9 +60,7 @@ export default function App() {
   // Function to update cart item quantity
   const updateCartItemQuantity = (productId, quantity) => {
     setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === productId ? { ...item, quantity } : item
-      )
+      prev.map((item) => (item.id === productId ? { ...item, quantity } : item))
     );
   };
 
@@ -73,15 +78,15 @@ export default function App() {
         <Routes>
           {/* Main public routes */}
           <Route element={<Layout cartItems={cartItems} />}>
-            <Route 
-              path="/" 
+            <Route
+              path="/"
               element={
-                <HomePage 
+                <HomePage
                   favorites={favorites}
                   toggleFavorite={toggleFavorite}
                   addToCart={addToCart}
                 />
-              } 
+              }
             />
             <Route
               path="/categories"
@@ -104,20 +109,22 @@ export default function App() {
               }
             />
             <Route path="/contact" element={<ContactPage />} />
-            <Route 
-              path="/cart" 
+            <Route
+              path="/cart"
               element={
-                <CartPage 
+                <CartPage
                   cartItems={cartItems}
                   updateCartItemQuantity={updateCartItemQuantity}
                   removeFromCart={removeFromCart}
                 />
-              } 
+              }
             />
 
             {/* Authentication routes */}
-            <Route path="/auth/signin" element={<SignIn />} />
-            <Route path="/auth/signup" element={<SignUp />} />
+            <Route path="/auth">
+              <Route path="signin" element={<SignIn />} />
+              <Route path="signup" element={<SignUp />} />
+            </Route>
 
             {/* Protected route: only accessible if user is authenticated */}
             <Route

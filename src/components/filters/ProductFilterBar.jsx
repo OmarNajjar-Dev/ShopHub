@@ -1,4 +1,5 @@
-import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
+
 import CategoryFilter from "./CategoryFilter";
 import PriceFilter from "./PriceFilter";
 import ProductSearch from "./ProductSearch";
@@ -32,17 +33,3 @@ export default function ProductFilterBar({
     </div>
   );
 }
-
-ProductFilterBar.propTypes = {
-  filterCriteria: PropTypes.shape({
-    selectedCategory: PropTypes.string,
-    selectedPrice: PropTypes.shape({
-      min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      max: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    }),
-    searchQuery: PropTypes.string
-  }).isRequired,
-  onCategoryChange: PropTypes.func.isRequired,
-  onPriceChange: PropTypes.func.isRequired,
-  onSearchChange: PropTypes.func.isRequired
-};

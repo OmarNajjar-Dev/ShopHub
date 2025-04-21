@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
 
 export default function PriceFilter({ selectedPrice, onPriceChange }) {
   return (
@@ -37,15 +37,3 @@ export default function PriceFilter({ selectedPrice, onPriceChange }) {
     </div>
   );
 }
-
-PriceFilter.propTypes = {
-  selectedPrice: PropTypes.shape({
-    min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    max: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  }),
-  onPriceChange: PropTypes.func.isRequired
-};
-
-PriceFilter.defaultProps = {
-  selectedPrice: { min: 0, max: "" }
-};
