@@ -6,7 +6,7 @@ export default function Card({
   product,
   isFavorite,
   toggleFavorite, // function to toggle favorite status
-  scale = 100, // default hover scale (e.g. 100 → scale-100)
+  imageHoverScale,
 }) {
   const { id, name, description, price, image_url } = product;
   
@@ -22,7 +22,7 @@ export default function Card({
         <img
           src={image_url}
           alt={name}
-          className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-${scale}`}
+          className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-${imageHoverScale}`}
         />
         {/* Heart button (favorite) in the top-right corner */}
         <button
