@@ -45,4 +45,4 @@ const initialProducts = [
 
 const categories = ['Electronics', 'Sports', 'Home', 'Accessories'];
 
-export {initialProducts, categories}
+export {initialProducts, categories};
