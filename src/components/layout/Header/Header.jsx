@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Logo from "./Logo";
+import Logo from "../../common/logo";
 import NavLinks from "./NavLinks";
 import DesktopIcons from "./DesktopIcons";
 import MobileMenu from "./MobileMenu";
 import MobileMenuButton from "./MobileMenuButton";
 
 export default function Header() {
-  const [cartItems, setCartItems] = useState(3);
+  const [cartItems] = useState(3);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);

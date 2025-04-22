@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Heart, ShoppingCart, User } from "lucide-react";
 import NavLinks from "./NavLinks";
 import CartBadge from "./CartBadge";

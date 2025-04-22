@@ -1,5 +1,5 @@
+// src/data/data.js
 
-// Sample products data
 const initialProducts = [
   {
     id: 1,
@@ -43,6 +43,19 @@ const initialProducts = [
   }
 ];
 
-const categories = ['Electronics', 'Sports', 'Home', 'Accessories'];
+const categories = [
+  {
+    title: "Electronics",
+    imageUrl: "../assets/images/electronics-devices.webp",
+  },
+  {
+    title: "Fashion",
+    imageUrl: "../assets/images/fashion-clothing.webp",
+  },
+  {
+    title: "Home & Living", 
+    imageUrl: "../assets/images/home-living.webp",
+  },
+];
 
-export {initialProducts, categories};
+export { initialProducts, categories };

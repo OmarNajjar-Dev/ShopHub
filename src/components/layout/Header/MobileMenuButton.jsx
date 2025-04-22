@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { Menu, X } from "lucide-react";
 
 export default function MobileMenuButton({ isOpen, toggle }) {

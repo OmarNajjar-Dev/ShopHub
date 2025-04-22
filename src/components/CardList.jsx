@@ -2,7 +2,7 @@
 
 import Card from "./Card";
 import { initialProducts } from "../lib/data";
-import PropTypes from "prop-types";
+
 
 // CardList: renders product cards filtered by the given criteria
 export default function CardList({
@@ -49,21 +49,4 @@ export default function CardList({
   );
 }
 
-
-CardList.propTypes = {
-  filterCriteria: PropTypes.shape({
-    selectedCategory: PropTypes.string.isRequired,
-    selectedPrice: PropTypes.shape({
-      min: PropTypes.number,
-      max: PropTypes.number,
-    }).isRequired,
-    searchQuery: PropTypes.string.isRequired,
-  }).isRequired,
-  favorites: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-    })
-  ).isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
-};
 

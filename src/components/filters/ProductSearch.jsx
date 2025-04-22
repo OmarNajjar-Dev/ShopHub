@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
+
 import { useState, useEffect, useMemo } from "react";
 import debounce from "lodash/debounce";
-import PropTypes from "prop-types";
 
 export default function ProductSearch({ searchQuery, onSearchChange }) {
   // Local state for the input so it updates immediately on each keystroke
@@ -54,12 +55,3 @@ export default function ProductSearch({ searchQuery, onSearchChange }) {
     </div>
   );
 }
-
-ProductSearch.propTypes = {
-  searchQuery: PropTypes.string,
-  onSearchChange: PropTypes.func.isRequired
-};
-
-ProductSearch.defaultProps = {
-  searchQuery: ""
-};
