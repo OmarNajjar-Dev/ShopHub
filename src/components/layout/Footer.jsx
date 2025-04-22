@@ -110,7 +110,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-gray-700  text-gray-400 text-center">
+        <div className="mt-8 pt-8 border-t border-gray-700 text-gray-400 text-center">
           <p>© 2025 ShopHub. All rights reserved.</p>
         </div>
       </div>
