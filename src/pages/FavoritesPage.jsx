@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 
-import CardList from "../components/CardList";
+import CardList from "../components/ui/CardList";
 
-export default function FavoritesPage({favorites, toggleFavorite}) {
+export default function FavoritesPage({ favorites, toggleFavorite }) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold mb-8">Your Favorites</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <CardList products={favorites} favorites={favorites} toggleFavorite={toggleFavorite} />
+        <CardList
+          products={favorites}
+          favorites={favorites}
+          toggleFavorite={toggleFavorite}
+        />
       </div>
     </div>
   );

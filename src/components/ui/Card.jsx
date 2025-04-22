@@ -8,7 +8,7 @@ export default function Card({
   toggleFavorite, // function to toggle favorite status
   imageHoverScale,
 }) {
-  const { id, name, description, price, image_url } = product;
+  const { id, name, description, price, imageUrl } = product;
   
   return (
     // Outer card container (enables hover effects on child elements)
@@ -20,7 +20,7 @@ export default function Card({
       <div className="relative h-48">
         {/* Product image: scales when hovered */}
         <img
-          src={image_url}
+          src={imageUrl}
           alt={name}
           className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-${imageHoverScale}`}
         />

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
-import CardList from "../components/CardList";
-import ProductFilterBar from "../components/filters/ProductFilterBar";
+import CardList from "../../components/ui/CardList";
+import ProductFilterBar from "./filters";
 import { useState } from "react";
 
 export default function CategoriesPage({ favorites, toggleFavorite }) {
