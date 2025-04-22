@@ -1,6 +1,6 @@
-// NavLinks.jsx
-// Shared navigation links for both desktop and mobile
-import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
+
+import { Link } from "react-router-dom";
 
 export default function NavLinks({ isMobile = false }) {
   const baseClass = isMobile
@@ -9,13 +9,9 @@ export default function NavLinks({ isMobile = false }) {
   
   return (
     <>
-      <a href="/" className={baseClass}>Home</a>
-      <a href="/categories" className={baseClass}>Categories</a>
-      <a href="/contact" className={baseClass}>Contact</a>
+      <Link to="/" className={baseClass}>Home</Link>
+      <Link to="/categories" className={baseClass}>Categories</Link>
+      <Link to="/contact" className={baseClass}>Contact</Link>
     </>
   );
 }
-
-NavLinks.propTypes = {
-  isMobile: PropTypes.bool
-};

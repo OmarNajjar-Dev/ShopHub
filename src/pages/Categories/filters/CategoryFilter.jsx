@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { categories } from "../../lib/data.js";
+import { categories } from "../../../lib/data"; // Importing categories from a data file
 
 function CategoryFilter({ selectedCategory, onCategoryChange }) {
   return (

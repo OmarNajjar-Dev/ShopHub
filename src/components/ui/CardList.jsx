@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import Card from "./Card";
-import { initialProducts } from "../lib/data";
-
+import { initialProducts } from "../../lib/data";
 
 // CardList: renders product cards filtered by the given criteria
 export default function CardList({
@@ -34,19 +33,15 @@ export default function CardList({
 
   return (
     <>
-      {products
-        .filter(filterProduct)
-        .map((product) => (
-          <Card
-            key={product.id}
-            product={product}
-            isFavorite={favorites.some((fav) => fav.id === product.id)}
-            toggleFavorite={toggleFavorite}
-            imageHoverScale={imageHoverScale}
-          />
-        ))}
+      {products.filter(filterProduct).map((product) => (
+        <Card
+          key={product.id}
+          product={product}
+          isFavorite={favorites.some((fav) => fav.id === product.id)}
+          toggleFavorite={toggleFavorite}
+          imageHoverScale={imageHoverScale}
+        />
+      ))}
     </>
   );
 }
-
-

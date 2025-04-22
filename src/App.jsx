@@ -1,14 +1,14 @@
 import { lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Layout from "./components/layout/layout";
-import ProtectedRoute from "./components/ProtectedRoute";
+import Layout from "./components/layout/Layout";
+import ProtectedRoute from "./components/guards/ProtectedRoute";
 
 // Lazy loaded pages (for better performance)
-const HomePage = lazy(() => import("./pages/HomePage"));
+const HomePage = lazy(() => import("./pages/Home"));
 const SignIn = lazy(() => import("./pages/auth/SignIn"));
 const SignUp = lazy(() => import("./pages/auth/SignUp"));
-const CategoriesPage = lazy(() => import("./pages/CategoriesPage"));
+const CategoriesPage = lazy(() => import("./pages/Categories"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const CartPage = lazy(() => import("./pages/CartPage"));
@@ -84,7 +84,7 @@ export default function App() {
                 <HomePage
                   favorites={favorites}
                   toggleFavorite={toggleFavorite}
-                  addToCart={addToCart}
+              
                 />
               }
             />

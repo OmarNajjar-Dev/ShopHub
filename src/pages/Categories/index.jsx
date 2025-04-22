@@ -1,7 +1,9 @@
-import CardList from "../components/CardList";
-import ProductFilterBar from "../components/filters/ProductFilterBar";
+/* eslint-disable react/prop-types */
+
+import CardList from "../../components/ui/CardList";
+import ProductFilterBar from "./filters";
 import { useState } from "react";
-import PropTypes from "prop-types";
+
 export default function CategoriesPage({ favorites, toggleFavorite }) {
   // State to manage the selected filters (category, price, and search query)
   const [filterCriteria, setFilterCriteria] = useState({
@@ -46,9 +48,3 @@ export default function CategoriesPage({ favorites, toggleFavorite }) {
     </div>
   );
 }
-
-CategoriesPage.propTypes = {
-  favorites: PropTypes.array.isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
-};
-
