@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { categories } from "../../../lib/data"; // Importing categories from a data file
+import { categories } from "../../../data/categories"; // Importing categories from a data file
 
 export default function CategoryFilter({ selectedCategory, onCategoryChange }) {
   return (
@@ -9,7 +9,7 @@ export default function CategoryFilter({ selectedCategory, onCategoryChange }) {
       <label className="block text-sm font-medium text-gray-700 mb-2">
         Category
       </label>
-      
+
       {/* Dropdown for selecting a category */}
       <select
         name="category"
@@ -18,7 +18,7 @@ export default function CategoryFilter({ selectedCategory, onCategoryChange }) {
         onChange={(e) => onCategoryChange(e.target.value)}
       >
         <option value="">All Categories</option>
-        {categories.map((category) => (
+        {categories?.map((category) => (
           <option key={category} value={category}>
             {category}
           </option>

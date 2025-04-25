@@ -1,13 +1,14 @@
 import { lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Layout from "./components/layout/Layout";
-import ProtectedRoute from "./components/guards/ProtectedRoute";
+import Layout from "./layouts";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 // Lazy loaded pages (for better performance)
 const HomePage = lazy(() => import("./pages/Home"));
-const SignIn = lazy(() => import("./pages/auth/SignIn"));
-const SignUp = lazy(() => import("./pages/auth/SignUp"));
+const AuthPage = lazy(() => import("./pages/Auth"));
 const CategoriesPage = lazy(() => import("./pages/Categories"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
@@ -16,33 +17,26 @@ const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
-  // Global state to manage favorite products
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("favorite")) ?? []
-  );
-  // Global state for cart items
-  const [cartItems, setCartItems] = useState([]);
+  const [favorites, setFavorites] = useLocalStorage("favorite", []);
 
-  // Function to add or remove a product from favorites
   const toggleFavorite = (product) => {
     setFavorites((prev) => {
-      const updatedFavorites = prev.find((item) => item.id === product.id)
-        ? prev.filter((item) => item.id !== product.id)
+      const updated = prev.some((i) => i.id === product.id)
+        ? prev.filter((i) => i.id !== product.id)
         : [...prev, product];
-
-      // Save the updated favorites to localStorage
-      localStorage.setItem("favorite", JSON.stringify(updatedFavorites));
-
-      return updatedFavorites; // return the updated favorites to set the state
+      return updated;
     });
   };
+
+  // Global state for cart items
+  const [cartItems, setCartItems] = useState([]);
 
   // Function to add item to cart
   const addToCart = (product, quantity = 1) => {
     setCartItems((prev) => {
-      const existingItem = prev.find((item) => item.id === product.id);
+      const existingItem = prev?.find((item) => item.id === product.id);
       if (existingItem) {
-        return prev.map((item) =>
+        return prev?.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
@@ -54,13 +48,15 @@ export default function App() {
 
   // Function to remove item from cart
   const removeFromCart = (productId) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== productId));
+    setCartItems((prev) => prev?.filter((item) => item.id !== productId));
   };
 
   // Function to update cart item quantity
   const updateCartItemQuantity = (productId, quantity) => {
     setCartItems((prev) =>
-      prev.map((item) => (item.id === productId ? { ...item, quantity } : item))
+      prev?.map((item) =>
+        item.id === productId ? { ...item, quantity } : item
+      )
     );
   };
 
@@ -84,7 +80,6 @@ export default function App() {
                 <HomePage
                   favorites={favorites}
                   toggleFavorite={toggleFavorite}
-              
                 />
               }
             />
@@ -120,11 +115,15 @@ export default function App() {
               }
             />
 
-            {/* Authentication routes */}
-            <Route path="/auth">
-              <Route path="signin" element={<SignIn />} />
-              <Route path="signup" element={<SignUp />} />
-            </Route>
+            {/* Auth flow under /auth */}
+            <Route
+              path="auth"
+              element={
+                <PublicRoute>
+                  <AuthPage />
+                </PublicRoute>
+              }
+            />
 
             {/* Protected route: only accessible if user is authenticated */}
             <Route

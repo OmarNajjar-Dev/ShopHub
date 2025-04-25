@@ -1,4 +1,5 @@
-import { Facebook, Twitter, Instagram} from "lucide-react";
+import { Facebook, Twitter, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -18,28 +19,28 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a
+                <Link
+                  to="/"
                   className="text-gray-400 hover:text-white transition-colors"
-                  href="/"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
+                  to="/categories"
                   className="text-gray-400 hover:text-white transition-colors"
-                  href="/categories"
                 >
                   Categories
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
+                  to="/contact"
                   className="text-gray-400 hover:text-white transition-colors"
-                  href="/contact"
                 >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -50,29 +51,29 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               {/* Email */}
               <li className="space-x-1">
-                <span className="font-medium">Email:</span>
-                <a
-                  href="mailto:support@shophub.com"
+                <span>Email:</span>
+                <Link
+                  to="mailto:support@shophub.com"
                   className="hover:text-white transition-colors"
                 >
                   support@shophub.com
-                </a>
+                </Link>
               </li>
 
               {/* Phone */}
               <li className="space-x-1">
-                <span className="font-medium">Phone:</span>
-                <a
-                  href="tel:+966500000000"
+                <span>Phone:</span>
+                <Link
+                  to="tel:+966500000000"
                   className="hover:text-white transition-colors"
                 >
                   (555) 123-4567
-                </a>
+                </Link>
               </li>
 
               {/* Address */}
               <li className="space-x-1">
-                <span className="font-medium">Address:</span>
+                <span>Address:</span>
                 <span className="break-words">
                   123 Shop Street, City, Country
                 </span>
@@ -85,25 +86,31 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
               <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors hover:scale-110 transform duration-200"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors transform duration-200"
                 aria-label="Facebook"
               >
-                <Facebook className="w-6 h-6text-gray-400 hover:text-white transition-colors hover:scale-110 transform duration-200" />
+                <Facebook className="w-6 h-6" />
               </a>
               <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors hover:scale-110 transform duration-200"
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors transform duration-200"
                 aria-label="Twitter"
               >
-                <Twitter className="w-6 h-6 text-gray-400 hover:text-white transition-colors hover:scale-10 transform duration-200" />
+                <Twitter className="w-6 h-6" />
               </a>
               <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors hover:scale-110 transform duration-200"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors transform duration-200"
                 aria-label="Instagram"
               >
-                <Instagram className="w-6 h-6 text-gray-400 hover:text-white transition-colors hover:scale-100 transform duration-200" />
+                <Instagram className="w-6 h-6" />
               </a>
             </div>
           </div>
@@ -116,4 +123,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-};
+}
