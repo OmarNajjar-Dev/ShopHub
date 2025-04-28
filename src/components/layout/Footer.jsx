@@ -86,21 +86,21 @@ export default function Footer() {
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors hover:scale-110 transform duration-200"
+                className="text-gray-400 hover:text-white transition-colors hover:scale-100 transform duration-200"
                 aria-label="Facebook"
               >
-                <Facebook className="w-6 h-6text-gray-400 hover:text-white transition-colors hover:scale-110 transform duration-200" />
+                <Facebook className="w-6 h-6text-gray-400 hover:text-white transition-colors hover:scale-100 transform duration-200" />
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors hover:scale-110 transform duration-200"
+                className="text-gray-400 hover:text-white transition-colors hover:scale-100 transform duration-200"
                 aria-label="Twitter"
               >
-                <Twitter className="w-6 h-6 text-gray-400 hover:text-white transition-colors hover:scale-10 transform duration-200" />
+                <Twitter className="w-6 h-6 text-gray-400 hover:text-white transition-colors hover:scale-100 transform duration-200" />
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors hover:scale-110 transform duration-200"
+                className="text-gray-400 hover:text-white transition-colors hover:scale-100 transform duration-200"
                 aria-label="Instagram"
               >
                 <Instagram className="w-6 h-6 text-gray-400 hover:text-white transition-colors hover:scale-100 transform duration-200" />

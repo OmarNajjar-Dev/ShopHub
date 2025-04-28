@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Logo from "../../common/Logo";
+import Logo from "../../common/logo/";
 import MobileMenuButton from "./MobileMenuButton";
 import MobileMenu from "./MobileMenu";
 import NavLinks from "./NavLinks";
@@ -16,8 +16,6 @@ export default function Header() {
       <nav className="bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            
-            {/* Left side (Logo + Links) */}
             <div className="flex items-center gap-8">
               <Logo />
               <div className="hidden sm:flex gap-6">

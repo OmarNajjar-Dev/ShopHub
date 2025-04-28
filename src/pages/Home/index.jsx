@@ -24,6 +24,7 @@ export default function HomePage({ favorites, toggleFavorite }) {
             products={initialProducts.slice(0, 4)}
             favorites={favorites}
             toggleFavorite={toggleFavorite}
+            imageHoverScale={110}
           />
         </div>
 
