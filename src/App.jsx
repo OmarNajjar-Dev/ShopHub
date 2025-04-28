@@ -6,6 +6,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
 import useLocalStorage from "./hooks/useLocalStorage";
 import SignInFavoritesPrompt from "./pages/Favorites/SignInFavoritesPrompt";
+import SignInCheckout from "./pages/Checkout/SignInCheckout";
 
 // Lazy loaded pages (for better performance)
 const HomePage = lazy(() => import("./pages/Home"));
@@ -14,7 +15,7 @@ const CategoriesPage = lazy(() => import("./pages/Categories"));
 const FavoritesPage = lazy(() => import("./pages/Favorites"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const CartPage = lazy(() => import("./pages/CartPage"));
-const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
+const CheckoutPage = lazy(() => import("./pages/Checkout"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
@@ -132,7 +133,7 @@ export default function App() {
             <Route
               path="/checkout"
               element={
-                <ProtectedRoute>
+                <ProtectedRoute fallback={SignInCheckout}>
                   <CheckoutPage cartItems={cartItems} />
                 </ProtectedRoute>
               }
