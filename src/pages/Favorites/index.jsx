@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import CardList from "../components/ui/CardList";
+import CardList from "../../components/ui/CardList";
 
 export default function FavoritesPage({ favorites, toggleFavorite }) {
   return (

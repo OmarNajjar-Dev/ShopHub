@@ -2,15 +2,16 @@ import { lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Layout from "./layouts";
-import ProtectedRoute from "./components/ProtectedRoute";
-import PublicRoute from "./components/PublicRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import PublicRoute from "./routes/PublicRoute";
 import useLocalStorage from "./hooks/useLocalStorage";
+import SignInFavoritesPrompt from "./pages/Favorites/SignInFavoritesPrompt";
 
 // Lazy loaded pages (for better performance)
 const HomePage = lazy(() => import("./pages/Home"));
 const AuthPage = lazy(() => import("./pages/Auth"));
 const CategoriesPage = lazy(() => import("./pages/Categories"));
-const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
+const FavoritesPage = lazy(() => import("./pages/Favorites"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const CartPage = lazy(() => import("./pages/CartPage"));
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
@@ -96,11 +97,13 @@ export default function App() {
             <Route
               path="/favorites"
               element={
-                <FavoritesPage
-                  favorites={favorites}
-                  toggleFavorite={toggleFavorite}
-                  addToCart={addToCart}
-                />
+                <ProtectedRoute fallback={SignInFavoritesPrompt}>
+                  <FavoritesPage
+                    favorites={favorites}
+                    toggleFavorite={toggleFavorite}
+                    addToCart={addToCart}
+                  />
+                </ProtectedRoute>
               }
             />
             <Route path="/contact" element={<ContactPage />} />
@@ -117,7 +120,7 @@ export default function App() {
 
             {/* Auth flow under /auth */}
             <Route
-              path="auth"
+              path="/auth"
               element={
                 <PublicRoute>
                   <AuthPage />

@@ -5,7 +5,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
+function AuthProvider({ children }) {
   const [isUser, setIsUser] = useLocalStorage("isUser", false);
 
   return (
@@ -15,6 +15,8 @@ export function AuthProvider({ children }) {
   );
 }
 
-export function useAuth() {
+function useAuth() {
   return useContext(AuthContext);
 }
+
+export { AuthProvider, useAuth };

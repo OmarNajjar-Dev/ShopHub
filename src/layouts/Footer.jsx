@@ -46,29 +46,29 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <address className="not-italic space-y-4">
+          <address className="not-italic">
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-gray-400">
               {/* Email */}
               <li className="space-x-1">
-                <span>Email:</span>
-                <Link
-                  to="mailto:support@shophub.com"
+                <span className="break-words">Email:</span>
+                <a
+                  href="mailto:support@shophub.com"
                   className="hover:text-white transition-colors"
                 >
                   support@shophub.com
-                </Link>
+                </a>
               </li>
 
               {/* Phone */}
               <li className="space-x-1">
                 <span>Phone:</span>
-                <Link
+                <a
                   to="tel:+966500000000"
                   className="hover:text-white transition-colors"
                 >
                   (555) 123-4567
-                </Link>
+                </a>
               </li>
 
               {/* Address */}
