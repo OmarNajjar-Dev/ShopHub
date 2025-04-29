@@ -4,7 +4,7 @@ import Stripe from "stripe";
 import cors from "cors";
 
 const app = express();
-const stripe = new Stripe("YOUR_SECRET_KEY"); // مفتاح السكرت من لوحة تحكم Stripe
+const stripe = new Stripe("YOUR_SECRET_KEY"); 
 
 app.use(cors());
 app.use(express.json());
