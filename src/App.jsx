@@ -1,12 +1,22 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// Layouts
 import Layout from "./layouts";
+
+// Routes
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
+
+// Hooks
 import useLocalStorage from "./hooks/useLocalStorage";
+
+// Static pages (non-lazy)
 import SignInFavoritesPrompt from "./pages/Favorites/SignInFavoritesPrompt";
 import SignInCheckout from "./pages/Checkout/SignInCheckout";
+
+// Utils
+import ScrollToTop from "./utils/ScollToTop";
 
 // Lazy loaded pages
 const HomePage = lazy(() => import("./pages/Home"));
@@ -24,12 +34,15 @@ export default function App() {
   const toggleFavorite = (product) => {
     setFavorites((prev) => {
       const exists = prev.some((i) => i.id === product.id);
-      return exists ? prev.filter((i) => i.id !== product.id) : [...prev, product];
+      return exists
+        ? prev.filter((i) => i.id !== product.id)
+        : [...prev, product];
     });
   };
 
   return (
     <Router>
+      <ScrollToTop />
       <Suspense
         fallback={
           <div className="flex justify-center items-center h-screen">
@@ -41,10 +54,15 @@ export default function App() {
       >
         <Routes>
           {/* Routes wrapped with Layout */}
-          <Route element={<Layout />}>            
+          <Route element={<Layout />}>
             <Route
               path="/"
-              element={<HomePage favorites={favorites} toggleFavorite={toggleFavorite} />}
+              element={
+                <HomePage
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
             />
             <Route
               path="/categories"
