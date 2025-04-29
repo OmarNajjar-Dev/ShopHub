@@ -3,7 +3,7 @@ import ShippingForm from "./ShippingForm";
 import PaymentForm from "./PaymentForm";
 import OrderSummary from "./OrderSummary";
 import { Elements } from "@stripe/react-stripe-js";
-import stripePromise from "../../stripe"; 
+import stripePromise from "../../str    ipe"; 
 
 export default function Checkout() {
   const [formData, setFormData] = useState({
