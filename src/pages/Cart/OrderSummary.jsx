@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
 
-const OrderSummary = ({ cartItems }) => {
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+export default function OrderSummary({ cartItems }) {
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   const handleCheckout = () => {
-    window.location.href = '/checkout';
+    window.location.href = "/checkout";
   };
 
   return (
-    <div className="bg-white p-6 shadow-sm rounded-lg">
+    <div className="bg-white p-6 shadow-xs rounded-lg">
       <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
       <div className="space-y-4">
         <div className="flex justify-between">
@@ -32,6 +35,4 @@ const OrderSummary = ({ cartItems }) => {
       </button>
     </div>
   );
-};
-
-export default OrderSummary;
+}

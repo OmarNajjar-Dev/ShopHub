@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState } from "react";
-import { Routes, Route } from "react-router-dom"; // <== فقط Routes و Route
+import { Routes, Route } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 
@@ -10,7 +10,7 @@ const SignUp = lazy(() => import("./pages/auth/SignUp"));
 const CategoriesPage = lazy(() => import("./pages/Categories"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const ContactPage = lazy(() => import("./pages/Contact/"));
-const CartPage = lazy(() => import("./pages/CartPage"));
+const CartPage = lazy(() => import("./pages/Cart"));
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
