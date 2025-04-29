@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import Title from "../../components/ui/title";
+import Title from "../../components/ui/Title";
 import HeroSection from "./HeroSection";
 import FeaturedCategories from "./FeaturedCategories";
 import CardList from "../../components/ui/CardList";
