@@ -11,10 +11,10 @@ export default function ShippingForm({ email, formData, onChange }) {
           <input
             type="text"
             name="firstName"
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
             value={formData.firstName}
             onChange={onChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
+            required
           />
         </div>
         <div>
@@ -24,10 +24,10 @@ export default function ShippingForm({ email, formData, onChange }) {
           <input
             type="text"
             name="lastName"
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
             value={formData.lastName}
             onChange={onChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
+            required
           />
         </div>
         <div className="md:col-span-2">
@@ -49,10 +49,10 @@ export default function ShippingForm({ email, formData, onChange }) {
           <input
             type="text"
             name="address"
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
             value={formData.address}
             onChange={onChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
+            required
           />
         </div>
         <div>
@@ -62,10 +62,10 @@ export default function ShippingForm({ email, formData, onChange }) {
           <input
             type="text"
             name="city"
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
             value={formData.city}
             onChange={onChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
+            required
           />
         </div>
         <div>
@@ -75,10 +75,10 @@ export default function ShippingForm({ email, formData, onChange }) {
           <input
             type="text"
             name="postalCode"
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
             value={formData.postalCode}
             onChange={onChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
+            required
           />
         </div>
         <div className="md:col-span-2">
@@ -88,10 +88,10 @@ export default function ShippingForm({ email, formData, onChange }) {
           <input
             type="text"
             name="country"
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
             value={formData.country}
             onChange={onChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
+            required
           />
         </div>
       </div>
