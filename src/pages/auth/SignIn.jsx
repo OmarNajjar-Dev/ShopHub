@@ -14,7 +14,7 @@ export default function SignIn({ setMode, handleSubmit }) {
           onSubmit={handleSubmit}
           className="mt-8 space-y-6"
         >
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-md shadow-xs -space-y-px">
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
@@ -25,7 +25,7 @@ export default function SignIn({ setMode, handleSubmit }) {
                 type="email"
                 autoComplete="email"
                 required
-                className="block bg-white w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="block bg-white w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-t-md"
                 placeholder="Email address"
               />
             </div>
@@ -39,7 +39,7 @@ export default function SignIn({ setMode, handleSubmit }) {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="block bg-white w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="block bg-white w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-b-md"
                 placeholder="Password"
               />
             </div>
@@ -48,7 +48,7 @@ export default function SignIn({ setMode, handleSubmit }) {
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="w-full flex justify-center py-2 px-4 text-sm font-medium border border-transparent rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Sign in
             </button>

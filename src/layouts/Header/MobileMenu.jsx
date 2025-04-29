@@ -14,7 +14,7 @@ export default function MobileMenu({ cartItems }) {
       </div>
 
       {/* Icons */}
-      <div className="flex justify-around pt-2 border-t">
+      <div className="flex justify-around pt-2 border-t border-gray-200">
         <MobileNavIcons cartItems={cartItems} />
       </div>
     </div>

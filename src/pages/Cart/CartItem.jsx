@@ -3,7 +3,7 @@ import { Trash2, Minus, Plus } from "lucide-react";
 
 export default function CartItem({ item, removeItem, updateQuantity }) {
   return (
-    <div className="flex items-center p-6 border-b border-gray-200 last:border-b-0">
+    <div className="flex items-center px-2 py-6 md:px-6 border-b border-gray-200 last:border-b-0">
       <img
         src={item.image}
         alt={item.title}
@@ -25,7 +25,7 @@ export default function CartItem({ item, removeItem, updateQuantity }) {
                 className="p-2 hover:bg-gray-100 text-black"
                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
               >
-                <Minus className="size-4" />
+                <Minus className="size-3 md:size-4" />
               </button>
               <span className="px-4 py-2 border-x border-gray-200">
                 {item.quantity}
@@ -34,11 +34,11 @@ export default function CartItem({ item, removeItem, updateQuantity }) {
                 className="p-2 hover:bg-gray-100 text-black"
                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
               >
-                <Plus className="size-4" />
+                <Plus className="size-3 md:size-4" />
               </button>
             </div>
           </div>
-          <span className="text-lg font-semibold">
+          <span className="ml-3 md:ml-0 text-lg font-semibold">
             ${(item.price * item.quantity).toFixed(2)}
           </span>
         </div>

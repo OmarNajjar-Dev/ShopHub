@@ -1,5 +1,5 @@
-import { lazy, Suspense, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Layout from "./layouts";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -20,44 +20,13 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
   const [favorites, setFavorites] = useLocalStorage("favorite", []);
+  // Assume cart state is managed elsewhere or add here if needed
 
   const toggleFavorite = (product) => {
     setFavorites((prev) => {
-      const updated = prev.some((i) => i.id === product.id)
-        ? prev.filter((i) => i.id !== product.id)
-        : [...prev, product];
-      return updated;
+      const exists = prev.some((i) => i.id === product.id);
+      return exists ? prev.filter((i) => i.id !== product.id) : [...prev, product];
     });
-  };
-
-  // Global state for cart items
-  const [cartItems, setCartItems] = useState([]);
-
-  // Function to add item to cart
-  const addToCart = (product, quantity = 1) => {
-    setCartItems((prev) => {
-      const existingItem = prev?.find((item) => item.id === product.id);
-      if (existingItem) {
-        return prev?.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
-      }
-      return [...prev, { ...product, quantity }];
-    });
-  };
-
-  const removeFromCart = (productId) => {
-    setCartItems((prev) => prev?.filter((item) => item.id !== productId));
-  };
-
-  const updateCartItemQuantity = (productId, quantity) => {
-    setCartItems((prev) =>
-      prev?.map((item) =>
-        item.id === productId ? { ...item, quantity } : item
-      )
-    );
   };
 
   return (
@@ -72,16 +41,11 @@ export default function App() {
         }
       >
         <Routes>
-          {/* Main public routes */}
-          <Route element={<Layout cartItems={cartItems} />}>
+          {/* Routes wrapped with Layout */}
+          <Route element={<Layout /* pass cartItems here if available */ />}>            
             <Route
               path="/"
-              element={
-                <HomePage
-                  favorites={favorites}
-                  toggleFavorite={toggleFavorite}
-                />
-              }
+              element={<HomePage favorites={favorites} toggleFavorite={toggleFavorite} />}
             />
             <Route
               path="/categories"
@@ -89,7 +53,6 @@ export default function App() {
                 <CategoriesPage
                   favorites={favorites}
                   toggleFavorite={toggleFavorite}
-                  addToCart={addToCart}
                 />
               }
             />
@@ -100,57 +63,33 @@ export default function App() {
                   <FavoritesPage
                     favorites={favorites}
                     toggleFavorite={toggleFavorite}
-                    addToCart={addToCart}
                   />
                 </ProtectedRoute>
               }
             />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/cart" element={<CartPage /* cart props */ />} />
             <Route
-              path="/cart"
+              path="/checkout"
               element={
-                <CartPage
-                  cartItems={cartItems}
-                  updateCartItemQuantity={updateCartItemQuantity}
-                  removeFromCart={removeFromCart}
-                />
+                <ProtectedRoute fallback={SignInCheckout}>
+                  <CheckoutPage /* cart props */ />
+                </ProtectedRoute>
               }
             />
-
-            {/* Auth flow under /auth */}
+            {/* Auth under layout if desired */}
             <Route
-              path="/auth"
+              path="/auth/*"
               element={
                 <PublicRoute>
                   <AuthPage />
                 </PublicRoute>
               }
             />
-
-            {/* Protected route: only accessible if user is authenticated */}
-            <Route
-              path="/checkout"
-              element={
-                <ProtectedRoute fallback={SignInCheckout}>
-                  <CheckoutPage cartItems={cartItems} />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* Catch-all route for undefined paths */}
             <Route path="*" element={<NotFound />} />
           </Route>
-
-          {/* Checkout */}
-          <Route
-            path="/checkout"
-            element={<CheckoutPage cartItems={cartItems} />}
-          />
-
-          {/* Not Found */}
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </Suspense>
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }

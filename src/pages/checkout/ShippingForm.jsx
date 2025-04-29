@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 export default function ShippingForm({ formData, onChange }) {
     return (
-      <div className="bg-white p-6 rounded-lg shadow-xs">
+      <div className="bg-white px-2 py-6 md:px-6 rounded-lg shadow-xs">
         <h2 className="text-xl font-semibold mb-6">Shipping Information</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>

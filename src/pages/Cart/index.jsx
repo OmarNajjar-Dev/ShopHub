@@ -13,7 +13,7 @@ export default function CartPage() {
       ) : (
         <>
           <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 ">
             <div className="lg:col-span-8">
               <div className="bg-white shadow-xs rounded-lg">
                 {cartItems.map((item) => (

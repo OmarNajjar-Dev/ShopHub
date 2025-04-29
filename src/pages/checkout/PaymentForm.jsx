@@ -51,7 +51,7 @@ export default function PaymentForm({ formData, onChange, onPay }) {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-xs">
+    <div className="bg-white px-2 py-6 md:px-6 rounded-lg shadow-xs">
       <h2 className="text-xl font-semibold mb-6">Payment Information</h2>
       <div className="space-y-6">
         {/* Payment Method */}
