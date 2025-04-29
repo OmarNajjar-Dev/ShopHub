@@ -14,7 +14,7 @@ export default function ProductFilterBar({
   const { selectedCategory, selectedPrice, searchQuery } = filterCriteria;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white p-6 rounded-lg shadow-sm">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white p-6 rounded-lg shadow-xs">
       {/* Category filter: allows users to select a category */}
       <CategoryFilter
         selectedCategory={selectedCategory}

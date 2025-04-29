@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Layout from "./layouts";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -8,13 +8,13 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import SignInFavoritesPrompt from "./pages/Favorites/SignInFavoritesPrompt";
 import SignInCheckout from "./pages/Checkout/SignInCheckout";
 
-// Lazy loaded pages (for better performance)
+// Lazy loaded pages
 const HomePage = lazy(() => import("./pages/Home"));
 const AuthPage = lazy(() => import("./pages/Auth"));
 const CategoriesPage = lazy(() => import("./pages/Categories"));
 const FavoritesPage = lazy(() => import("./pages/Favorites"));
-const ContactPage = lazy(() => import("./pages/ContactPage"));
-const CartPage = lazy(() => import("./pages/CartPage"));
+const ContactPage = lazy(() => import("./pages/Contact"));
+const CartPage = lazy(() => import("./pages/Cart"));
 const CheckoutPage = lazy(() => import("./pages/Checkout"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -48,12 +48,10 @@ export default function App() {
     });
   };
 
-  // Function to remove item from cart
   const removeFromCart = (productId) => {
     setCartItems((prev) => prev?.filter((item) => item.id !== productId));
   };
 
-  // Function to update cart item quantity
   const updateCartItemQuantity = (productId, quantity) => {
     setCartItems((prev) =>
       prev?.map((item) =>
@@ -142,8 +140,17 @@ export default function App() {
             {/* Catch-all route for undefined paths */}
             <Route path="*" element={<NotFound />} />
           </Route>
-        </Routes>
-      </Suspense>
-    </Router>
+
+          {/* Checkout */}
+          <Route
+            path="/checkout"
+            element={<CheckoutPage cartItems={cartItems} />}
+          />
+
+          {/* Not Found */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
