@@ -1,4 +1,4 @@
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";

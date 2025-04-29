@@ -5,6 +5,7 @@ export default function CartItem({ item, removeItem, updateQuantity }) {
   return (
     <div className="flex items-center px-2 py-6 md:px-6 border-b border-gray-200 last:border-b-0">
       <img
+        rel="preload"
         src={item.image}
         alt={item.title}
         className="w-24 h-24 object-cover rounded-md"

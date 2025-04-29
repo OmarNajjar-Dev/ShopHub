@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import { Heart, ShoppingCart, User, LogOut } from "lucide-react";
 import CartBadge from "./CartBadge";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function DesktopNavIcons({ cartItems }) {
   const { isUser, setIsUser } = useAuth();

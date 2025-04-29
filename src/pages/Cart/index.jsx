@@ -1,4 +1,4 @@
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../contexts/CartContext";
 import EmptyCart from "./EmptyCart";
 import CartItem from "./CartItem";
 import OrderSummary from "./OrderSummary";

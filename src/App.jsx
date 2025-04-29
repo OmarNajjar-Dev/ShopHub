@@ -20,7 +20,6 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
   const [favorites, setFavorites] = useLocalStorage("favorite", []);
-  // Assume cart state is managed elsewhere or add here if needed
 
   const toggleFavorite = (product) => {
     setFavorites((prev) => {
@@ -42,7 +41,7 @@ export default function App() {
       >
         <Routes>
           {/* Routes wrapped with Layout */}
-          <Route element={<Layout /* pass cartItems here if available */ />}>            
+          <Route element={<Layout />}>            
             <Route
               path="/"
               element={<HomePage favorites={favorites} toggleFavorite={toggleFavorite} />}
@@ -68,12 +67,12 @@ export default function App() {
               }
             />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/cart" element={<CartPage /* cart props */ />} />
+            <Route path="/cart" element={<CartPage />} />
             <Route
               path="/checkout"
               element={
                 <ProtectedRoute fallback={SignInCheckout}>
-                  <CheckoutPage /* cart props */ />
+                  <CheckoutPage />
                 </ProtectedRoute>
               }
             />

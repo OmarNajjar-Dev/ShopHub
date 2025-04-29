@@ -12,6 +12,7 @@ export default function FeaturedCategories() {
             key={index}
             title={category.title}
             imageUrl={category.imageUrl}
+            category={category.category}
           />
         ))}
       </div>
