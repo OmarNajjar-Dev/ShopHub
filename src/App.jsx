@@ -11,7 +11,7 @@ const CategoriesPage = lazy(() => import("./pages/Categories"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const ContactPage = lazy(() => import("./pages/Contact/"));
 const CartPage = lazy(() => import("./pages/Cart"));
-const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
+const CheckoutPage = lazy(() => import("./pages/Checkout"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {

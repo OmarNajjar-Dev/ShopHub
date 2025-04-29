@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import ShippingForm from "./checkout/ShippingForm";
-import PaymentForm from "./checkout/PaymentForm";
-import OrderSummary from "./checkout/OrderSummary";
+import ShippingForm from "./ShippingForm";
+import PaymentForm from "./PaymentForm";
+import OrderSummary from "./OrderSummary";
 import { Elements } from "@stripe/react-stripe-js";
-import stripePromise from "../srtipe"; 
+import stripePromise from "../../srtipe"; 
 
 export default function Checkout() {
   const [formData, setFormData] = useState({
