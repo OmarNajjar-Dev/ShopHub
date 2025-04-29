@@ -1,4 +1,4 @@
-import Title from "../../components/ui/title";
+import Title from "../../components/ui/Title";
 import CategoryCard from "./CategoryCard";
 import { categoryCards } from "../../data/categoryCards";
 
