@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 export default function ShippingForm({ formData, onChange }) {
     return (
-      <div className="bg-white p-6 rounded-lg shadow-sm">
+      <div className="bg-white p-6 rounded-lg shadow-xs">
         <h2 className="text-xl font-semibold mb-6">Shipping Information</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -10,7 +10,7 @@ export default function ShippingForm({ formData, onChange }) {
               type="text"
               name="firstName"
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
               value={formData.firstName}
               onChange={onChange}
             />
@@ -21,7 +21,7 @@ export default function ShippingForm({ formData, onChange }) {
               type="text"
               name="lastName"
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
               value={formData.lastName}
               onChange={onChange}
             />
@@ -32,7 +32,7 @@ export default function ShippingForm({ formData, onChange }) {
               type="email"
               name="email"
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
               value={formData.email}
               onChange={onChange}
             />
@@ -43,7 +43,7 @@ export default function ShippingForm({ formData, onChange }) {
               type="text"
               name="address"
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
               value={formData.address}
               onChange={onChange}
             />
@@ -54,7 +54,7 @@ export default function ShippingForm({ formData, onChange }) {
               type="text"
               name="city"
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
               value={formData.city}
               onChange={onChange}
             />
@@ -65,7 +65,7 @@ export default function ShippingForm({ formData, onChange }) {
               type="text"
               name="postalCode"
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
               value={formData.postalCode}
               onChange={onChange}
             />
@@ -76,7 +76,7 @@ export default function ShippingForm({ formData, onChange }) {
               type="text"
               name="country"
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500"
               value={formData.country}
               onChange={onChange}
             />

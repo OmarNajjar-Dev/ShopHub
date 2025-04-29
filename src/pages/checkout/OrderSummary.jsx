@@ -7,7 +7,7 @@ export default function OrderSummary({ items }) {
     };
   
     return (
-      <div className="bg-white p-6 rounded-lg shadow-sm">
+      <div className="bg-white p-6 rounded-lg shadow-xs">
         <h2 className="text-xl font-semibold mb-6">Order Summary</h2>
         <div className="space-y-4">
           {items.map((item, index) => (
@@ -16,7 +16,7 @@ export default function OrderSummary({ items }) {
               <span>${item.price.toFixed(2)}</span>
             </div>
           ))}
-          <div className="border-t pt-4 flex justify-between font-semibold">
+          <div className="border-t border-gray-200 pt-4 flex justify-between font-semibold">
             <span>Total</span>
             <span>${calculateTotal()}</span>
           </div>
