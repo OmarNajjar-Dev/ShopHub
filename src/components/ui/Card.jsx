@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Heart } from "lucide-react";
-import { useCart } from "../../context/CartContext"; // ✅ import useCart
+import { useCart } from "../../contexts/CartContext"; // ✅ import useCart
 
 export default function Card({
   product,
@@ -11,7 +11,7 @@ export default function Card({
   const { addToCart } = useCart(); // ✅ get addToCart
 
   const { id, name, description, price, imageUrl } = product;
-  
+
   return (
     <div
       id={id}
@@ -19,6 +19,7 @@ export default function Card({
     >
       <div className="relative h-48">
         <img
+          rel="preload"
           src={imageUrl}
           alt={name}
           className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-${imageHoverScale}`}

@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 
+import Title from "../../components/ui/Title";
 import HeroSection from "./HeroSection";
 import FeaturedCategories from "./FeaturedCategories";
 import CardList from "../../components/ui/CardList";
-import { initialProducts } from "../../lib/data";
+import { initialProductss } from "../../data/products";
 import { useNavigate } from "react-router-dom";
 
 export default function HomePage({ favorites, toggleFavorite }) {
@@ -15,13 +16,11 @@ export default function HomePage({ favorites, toggleFavorite }) {
       <FeaturedCategories />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gray-50">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          Featured Products
-        </h2>
+        <Title title="Featured Products" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <CardList
-            products={initialProducts.slice(0, 4)}
+            products={initialProductss?.slice(0, 4)}
             favorites={favorites}
             toggleFavorite={toggleFavorite}
             imageHoverScale={110}

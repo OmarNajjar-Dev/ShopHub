@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 
 import Card from "./Card";
-import { initialProducts } from "../../lib/data";
+import { initialProductss } from "../../data/products";
 
 // CardList: renders product cards filtered by the given criteria
 export default function CardList({
-  products = initialProducts, // Default to all products
+  products = initialProductss, // Default to all products
   filterCriteria = { selectedCategory: "", selectedPrice: {}, searchQuery: "" },
   favorites = [],
   toggleFavorite,
@@ -33,11 +33,11 @@ export default function CardList({
 
   return (
     <>
-      {products.filter(filterProduct).map((product) => (
+      {products?.filter(filterProduct)?.map((product) => (
         <Card
           key={product.id}
           product={product}
-          isFavorite={favorites.some((fav) => fav.id === product.id)}
+          isFavorite={favorites?.some((fav) => fav.id === product.id)}
           toggleFavorite={toggleFavorite}
           imageHoverScale={imageHoverScale}
         />

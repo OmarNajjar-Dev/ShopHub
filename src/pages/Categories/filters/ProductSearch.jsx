@@ -47,7 +47,7 @@ export default function ProductSearch({ searchQuery, onSearchChange }) {
           id="search"
           type="text"
           placeholder="Search products..."
-          className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-2"
+          className="w-full rounded-md border-gray-300 shadow-xs focus:border-blue-500 focus:ring-blue-500 px-2"
           value={inputValue} // Controlled input bound to local state
           onChange={handleChange} // Update state and trigger debounced function on change
         />

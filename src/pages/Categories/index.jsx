@@ -1,28 +1,23 @@
 /* eslint-disable react/prop-types */
 
+import { useContext } from "react";
 import CardList from "../../components/ui/CardList";
 import ProductFilterBar from "./filters";
-import { useState } from "react";
+import { CategoryContext } from "../../contexts/CategoryContext";
+import {
+  createCategoryChangeHandler,
+  createPriceChangeHandler,
+  createSearchChangeHandler,
+} from "../../utils/filterHandlers";
 
 export default function CategoriesPage({ favorites, toggleFavorite }) {
-  // State to manage the selected filters (category, price, and search query)
-  const [filterCriteria, setFilterCriteria] = useState({
-    selectedCategory: "", // Initially no category is selected
-    selectedPrice: { min: "", max: "" }, // Default price range (no min, no max)
-    searchQuery: "", // Initially no search query
-  });
+  // Consume filter criteria and setter from context
+  const { filterCriteria, setFilterCriteria } = useContext(CategoryContext);
 
-  // Function to handle category change and update the filter state
-  const handleCategoryChange = (category) =>
-    setFilterCriteria((prev) => ({ ...prev, selectedCategory: category }));
-
-  // Function to handle price range change (min and max) and update the filter state
-  const handlePriceChange = (price) =>
-    setFilterCriteria((prev) => ({ ...prev, selectedPrice: price }));
-
-  // Function to handle search query change and update the filter state
-  const handleSearchChange = (query) =>
-    setFilterCriteria((prev) => ({ ...prev, searchQuery: query }));
+  // Handlers update context state
+  const handleCategoryChange = createCategoryChangeHandler(setFilterCriteria);
+  const handlePriceChange = createPriceChangeHandler(setFilterCriteria);
+  const handleSearchChange = createSearchChangeHandler(setFilterCriteria);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
