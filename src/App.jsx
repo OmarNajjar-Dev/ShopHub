@@ -29,7 +29,7 @@ const CheckoutPage = lazy(() => import("./pages/Checkout"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
-  const [favorites, setFavorites] = useLocalStorage("favorite", []);
+  const [favorites, setFavorites] = useLocalStorage("favorites", []);
 
   const toggleFavorite = (product) => {
     setFavorites((prev) => {

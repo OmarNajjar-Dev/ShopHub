@@ -5,18 +5,22 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 const AuthContext = createContext();
 
-function AuthProvider({ children }) {
-  const [isUser, setIsUser] = useLocalStorage("isUser", false);
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useLocalStorage("user", null);
 
   return (
-    <AuthContext.Provider value={{ isUser, setIsUser }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
-function useAuth() {
-  return useContext(AuthContext);
-}
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};
 
-export { AuthProvider, useAuth };
+export default AuthContext;

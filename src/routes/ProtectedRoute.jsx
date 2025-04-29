@@ -3,9 +3,9 @@
 import { useAuth } from "../contexts/AuthContext";
 
 export default function ProtectedRoute({ fallback: Fallback, children }) {
-  const { isUser } = useAuth();
+  const { user } = useAuth();
 
-  if (!isUser) {
+  if (!user) {
     return <Fallback />;
   }
 

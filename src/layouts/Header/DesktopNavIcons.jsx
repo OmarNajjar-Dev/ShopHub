@@ -6,10 +6,10 @@ import CartBadge from "./CartBadge";
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function DesktopNavIcons({ cartItems }) {
-  const { isUser, setIsUser } = useAuth();
+  const { user, setUser } = useAuth();
 
   const handleLogout = () => {
-    setIsUser(false);
+    setUser(null);
   };
 
   return (
@@ -34,7 +34,7 @@ export default function DesktopNavIcons({ cartItems }) {
       </Link>
 
       {/* Account or Logout */}
-      {!isUser ? (
+      {!user ? (
         <Link
           to="/auth"
           aria-label="Account"

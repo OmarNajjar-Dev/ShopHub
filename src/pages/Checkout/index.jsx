@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ShippingForm from "./ShippingForm";
 import PaymentForm from "./PaymentForm";
 import OrderSummary from "./OrderSummary";
 import { Elements } from "@stripe/react-stripe-js";
-import stripePromise from "../../stripe"; 
+import stripePromise from "../../stripe";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function Checkout() {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    email: "", // Initialize email as empty, will populate it from localStorage
     address: "",
     city: "",
     postalCode: "",
@@ -17,55 +18,44 @@ export default function Checkout() {
     paymentMethod: "",
   });
 
-  // Fetch the user's email from localStorage when the component mounts
-  useEffect(() => {
-    const userEmail = localStorage.getItem("userEmail"); // Retrieve email from localStorage
-    if (userEmail) {
-      setFormData((prevData) => ({
-        ...prevData,
-        email: userEmail, // Set the email from localStorage
-      }));
-    }
-  }, []); // Empty dependency array ensures this runs once when the component mounts
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handlePay = async () => {
     if (!formData.paymentMethod) {
-      alert("Please select a payment method first.");
-      return;
+      return alert("Please select a payment method first.");
     }
-
-    if (formData.paymentMethod === "visa" || formData.paymentMethod === "mastercard") {
+    if (["visa", "mastercard"].includes(formData.paymentMethod)) {
       alert("✅ Processing Stripe Payment...");
-      console.log("Processing Stripe Payment...");
-    } 
-     else {
+    } else {
       alert("⚠ Unknown payment method!");
     }
   };
 
-  const orderItems = [
-    { name: "Running Shoes", quantity: 1, price: 89.99 },
-  ];
+  const orderItems = [{ name: "Running Shoes", quantity: 1, price: 89.99 }];
 
   return (
     <Elements stripe={stripePromise}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-3xl font-bold mb-8">Checkout</h1>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-8">
-            <div className="space-y-8">
-              <ShippingForm formData={formData} onChange={handleInputChange} />
-              <PaymentForm formData={formData} onChange={handleInputChange} onPay={handlePay} />
-            </div>
+          {/* Left side: forms */}
+          <div className="lg:col-span-8 space-y-8">
+            <ShippingForm
+              email={user?.email || ''}
+              formData={formData}
+              onChange={handleInputChange}
+            />
+            <PaymentForm
+              formData={formData}
+              onChange={handleInputChange}
+              onPay={handlePay}
+            />
           </div>
+
+          {/* Right side: summary */}
           <div className="lg:col-span-4">
             <OrderSummary items={orderItems} />
           </div>

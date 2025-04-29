@@ -1,6 +1,15 @@
 /* eslint-disable react/prop-types */
 
-export default function SignIn({ setMode, handleSubmit }) {
+import { useState } from "react";
+
+export default function SignIn({ setMode, onSubmit }) {
+  const [email, setEmail] = useState("");
+
+  const handleForm = (e) => {
+    e.preventDefault();
+    onSubmit({ id: Date.now().toString(), email });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
       <div className="max-w-md w-full space-y-8">
@@ -10,16 +19,14 @@ export default function SignIn({ setMode, handleSubmit }) {
           </h2>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="mt-8 space-y-6"
-        >
+        <form onSubmit={handleForm} className="mt-8 space-y-6">
           <div className="rounded-md shadow-xs -space-y-px">
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
               </label>
               <input
+                onChange={e => setEmail(e.target.value)}
                 id="email-address"
                 name="email"
                 type="email"

@@ -6,11 +6,10 @@ import CartBadge from "./CartBadge";
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function MobileNavIcons({ cartItems }) {
-  const { isUser, setIsUser } = useAuth();
+  const { user, setUser } = useAuth();
 
   const handleLogout = () => {
-    setIsUser(false);
-    // Optional: redirect or clear session
+    setUser(null);
   };
 
   return (
@@ -39,7 +38,7 @@ export default function MobileNavIcons({ cartItems }) {
       </Link>
 
       {/* Auth / Logout */}
-      {!isUser ? (
+      {!user ? (
         <Link
           to="/auth"
           className="flex flex-col items-center p-2 text-gray-600 hover:text-gray-900"

@@ -5,19 +5,18 @@ import SignUp from "./SignUp";
 import { useNavigate } from "react-router-dom";
 
 export default function AuthPage() {
-  const { setIsUser } = useAuth();
+  const { setUser } = useAuth();
   const [mode, setMode] = useState("sign-in");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsUser(true);
+  const handleSubmit = (userData) => {
+    setUser(userData);
     navigate("/");
   };
 
   return mode === "sign-in" ? (
-    <SignIn setMode={setMode} handleSubmit={handleSubmit} />
+    <SignIn setMode={setMode} onSubmit={handleSubmit} />
   ) : (
-    <SignUp setMode={setMode} handleSubmit={handleSubmit} />
+    <SignUp setMode={setMode} onSubmit={handleSubmit} />
   );
 }
