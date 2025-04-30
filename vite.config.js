@@ -4,8 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 import compress from "vite-plugin-compression";
 
 export default ({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
-  process.env = { ...process.env, ...env };
+  const env = loadEnv(mode, import.meta.env.cwd(), "");
+  import.meta.env = { ...import.meta.env, ...env };
 
   return defineConfig({
     plugins: [react(), tailwindcss(), compress()],
