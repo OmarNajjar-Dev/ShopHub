@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import Title from "../../components/ui/Title";
 import HeroSection from "./HeroSection";
 import FeaturedCategories from "./FeaturedCategories";
@@ -7,7 +5,7 @@ import CardList from "../../components/ui/CardList";
 import { initialProductss } from "../../data/products";
 import { useNavigate } from "react-router-dom";
 
-export default function HomePage({ favorites, toggleFavorite }) {
+export default function HomePage() {
   const navigate = useNavigate();
 
   return (
@@ -21,8 +19,6 @@ export default function HomePage({ favorites, toggleFavorite }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <CardList
             products={initialProductss?.slice(0, 4)}
-            favorites={favorites}
-            toggleFavorite={toggleFavorite}
             imageHoverScale={110}
           />
         </div>

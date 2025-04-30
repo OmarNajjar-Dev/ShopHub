@@ -8,9 +8,6 @@ import Layout from "./layouts";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
 
-// Hooks
-import useLocalStorage from "./hooks/useLocalStorage";
-
 // Static pages (non-lazy)
 import SignInFavoritesPrompt from "./pages/Favorites/SignInFavoritesPrompt";
 import SignInCheckout from "./pages/Checkout/SignInCheckout";
@@ -29,17 +26,6 @@ const CheckoutPage = lazy(() => import("./pages/Checkout"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
-  const [favorites, setFavorites] = useLocalStorage("favorites", []);
-
-  const toggleFavorite = (product) => {
-    setFavorites((prev) => {
-      const exists = prev.some((i) => i.id === product.id);
-      return exists
-        ? prev.filter((i) => i.id !== product.id)
-        : [...prev, product];
-    });
-  };
-
   return (
     <Router>
       <ScrollToTop />
@@ -55,32 +41,13 @@ export default function App() {
         <Routes>
           {/* Routes wrapped with Layout */}
           <Route element={<Layout />}>
-            <Route
-              path="/"
-              element={
-                <HomePage
-                  favorites={favorites}
-                  toggleFavorite={toggleFavorite}
-                />
-              }
-            />
-            <Route
-              path="/categories"
-              element={
-                <CategoriesPage
-                  favorites={favorites}
-                  toggleFavorite={toggleFavorite}
-                />
-              }
-            />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/categories" element={<CategoriesPage />} />
             <Route
               path="/favorites"
               element={
                 <ProtectedRoute fallback={SignInFavoritesPrompt}>
-                  <FavoritesPage
-                    favorites={favorites}
-                    toggleFavorite={toggleFavorite}
-                  />
+                  <FavoritesPage />
                 </ProtectedRoute>
               }
             />

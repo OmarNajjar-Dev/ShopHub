@@ -10,7 +10,7 @@ import {
   createSearchChangeHandler,
 } from "../../utils/filterHandlers";
 
-export default function CategoriesPage({ favorites, toggleFavorite }) {
+export default function CategoriesPage() {
   // Consume filter criteria and setter from context
   const { filterCriteria, setFilterCriteria } = useContext(CategoryContext);
 
@@ -34,11 +34,7 @@ export default function CategoriesPage({ favorites, toggleFavorite }) {
 
       {/* CardList displays the products based on the applied filters */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <CardList
-          filterCriteria={filterCriteria}
-          favorites={favorites}
-          toggleFavorite={toggleFavorite}
-        />
+        <CardList filterCriteria={filterCriteria} />
       </div>
     </div>
   );

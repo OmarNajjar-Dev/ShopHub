@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Heart } from "lucide-react";
-import { useCart } from "../../contexts/CartContext"; // ✅ import useCart
+import { useCart } from "../../contexts/CartContext";
 
 export default function Card({
   product,
@@ -8,7 +8,7 @@ export default function Card({
   toggleFavorite,
   imageHoverScale,
 }) {
-  const { addToCart } = useCart(); // ✅ get addToCart
+  const { addToCart } = useCart();
 
   const { id, name, description, price, imageUrl } = product;
 
