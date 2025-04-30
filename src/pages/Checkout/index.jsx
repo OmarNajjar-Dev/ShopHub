@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
+import { Elements } from "@stripe/react-stripe-js";
+import stripePromise from "../../stripe";
+import { useAuth } from "../../contexts/AuthContext";
 import ShippingForm from "./ShippingForm";
 import PaymentForm from "./PaymentForm";
 import PaymentButton from "./PaymentButton";
 import OrderSummary from "./OrderSummary";
-import { Elements } from "@stripe/react-stripe-js";
-import stripePromise from "../../stripe";
-import { useAuth } from "../../contexts/AuthContext";
 
 export default function Checkout() {
   const { user } = useAuth();
@@ -17,6 +18,10 @@ export default function Checkout() {
     postalCode: "",
     country: "",
     paymentMethod: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+    email: user?.email || "",
   });
 
   const handleInputChange = (e) => {
@@ -24,11 +29,10 @@ export default function Checkout() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handlePay = (data) => {
-    console.log("Processing non-Stripe payment with data:", data);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Submitting order:", formData);
   };
-
-  const orderItems = [{ name: "Running Shoes", quantity: 1, price: 89.99 }];
 
   return (
     <Elements stripe={stripePromise}>
@@ -36,18 +40,18 @@ export default function Checkout() {
         <h1 className="text-3xl font-bold mb-8">Checkout</h1>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="lg:col-span-8">
-            <form className="space-y-8">
+            <form className="space-y-8" onSubmit={handleSubmit}>
               <ShippingForm
-                email={user?.email || ""}
+                email={formData.email}
                 formData={formData}
                 onChange={handleInputChange}
               />
               <PaymentForm formData={formData} onChange={handleInputChange} />
-              <PaymentButton formData={formData} onPay={handlePay} />
+              <PaymentButton formData={formData} onPay={() => {}} />
             </form>
           </div>
           <div className="lg:col-span-4">
-            <OrderSummary items={orderItems} />
+            <OrderSummary />
           </div>
         </div>
       </div>

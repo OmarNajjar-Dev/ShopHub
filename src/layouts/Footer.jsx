@@ -72,11 +72,16 @@ export default function Footer() {
               </li>
 
               {/* Address */}
-              <li className="space-x-1">
-                <span>Address:</span>
-                <span className="break-words">
+              <li>
+                <span className="font-semibold">Address:</span>{" "}
+                <a
+                  href="https://www.google.com/maps?q=123+Shop+Street,+City,+Country"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className=" hover:text-white no-underline"
+                >
                   123 Shop Street, City, Country
-                </span>
+                </a>
               </li>
             </ul>
           </address>

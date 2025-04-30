@@ -1,4 +1,3 @@
-// ContactInfo.jsx
 import ContactItem from "./ContactItem";
 import { Mail, Phone, MapPin } from "lucide-react";
 import BusinessHours from "./BusinessHours";
@@ -18,45 +17,41 @@ export default function ContactInfo() {
           content={
             <a
               href={`mailto:${defaultEmail}`}
-              className="text-blue-600 hover:text-blue-800"
+              className="text-gray-600 hover:text-gray-800 no-underline"
+              aria-label="Send an email"
             >
               {defaultEmail}
             </a>
           }
         />
-
         <ContactItem
           icon={<Phone className="w-6 h-6 text-blue-600 mr-4" />}
           title="Phone"
           content={
             <a
               href={`tel:${defaultPhone}`}
-              className="text-blue-600 hover:text-blue-800"
+              className="text-gray-600 hover:text-gray-800 no-underline"
+              aria-label="Call support"
             >
               {defaultPhone}
             </a>
           }
         />
-
         <ContactItem
           icon={<MapPin className="w-6 h-6 text-blue-600 mr-4" />}
           title="Address"
           content={
-            <address className="not-italic">
-              <a
-                href={`https://www.google.com/maps?q=${encodeURIComponent(
-                  defaultAddress
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800"
-              >
-                {defaultAddress}
-              </a>
-            </address>
+            <a
+              href={`https://www.google.com/maps?q=${encodeURIComponent(defaultAddress)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-800 no-underline"
+              aria-label="View address on Google Maps"
+            >
+              {defaultAddress}
+            </a>
           }
         />
-
         <BusinessHours />
       </div>
     </div>
