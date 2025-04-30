@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
+
 import { Heart } from "lucide-react";
+import { motion } from "framer-motion";
+import { cardAnimation, heartAnimation } from "../../animations/cardAnimation";
 import CartContext from "../../contexts/CartContext";
 import { useContext } from "react";
 
@@ -10,12 +13,12 @@ export default function Card({
   imageHoverScale,
 }) {
   const { addToCart } = useContext(CartContext);
-
   const { id, name, description, price, imageUrl } = product;
 
   return (
-    <div
+    <motion.div
       id={id}
+      {...cardAnimation}
       className="h-full rounded-lg bg-white shadow-md overflow-hidden group flex flex-col"
     >
       <div className="relative h-48">
@@ -29,11 +32,19 @@ export default function Card({
           className="absolute top-2 right-2 p-2 rounded-full bg-white shadow hover:bg-gray-200 cursor-pointer"
           onClick={() => toggleFavorite(product)}
         >
-          <Heart
-            className={`h-5 w-5 ${
-              isFavorite ? "text-red-500 fill-red-500" : "text-gray-600"
-            }`}
-          />
+          {/* استخدام motion مع قلب التغيير */}
+          <motion.div
+            animate={isFavorite ? heartAnimation.animate : heartAnimation.exit}
+            initial={heartAnimation.initial}
+            exit={heartAnimation.exit}
+            transition={heartAnimation.transition}
+          >
+            <Heart
+              className={`h-5 w-5 ${
+                isFavorite ? "text-red-500 fill-red-500" : "text-gray-600"
+              }`}
+            />
+          </motion.div>
         </button>
       </div>
 
@@ -44,12 +55,12 @@ export default function Card({
           <span className="text-lg font-bold">${price}</span>
           <button
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            onClick={() => addToCart(product)} // ✅ Add to cart
+            onClick={() => addToCart(product)}
           >
             Add to Cart
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

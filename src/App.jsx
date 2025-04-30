@@ -1,5 +1,7 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { motion } from "framer-motion";
+import { pageTransition } from "./animations/pageTransitions";
 
 // Layouts
 import Layout from "./layouts";
@@ -41,23 +43,55 @@ export default function App() {
         <Routes>
           {/* Routes wrapped with Layout */}
           <Route element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/categories" element={<CategoriesPage />} />
+            <Route
+              path="/"
+              element={
+                <motion.div {...pageTransition}>
+                  <HomePage />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/categories"
+              element={
+                <motion.div {...pageTransition}>
+                  <CategoriesPage />
+                </motion.div>
+              }
+            />
             <Route
               path="/favorites"
               element={
                 <ProtectedRoute fallback={SignInFavoritesPrompt}>
-                  <FavoritesPage />
+                  <motion.div {...pageTransition}>
+                    <FavoritesPage />
+                  </motion.div>
                 </ProtectedRoute>
               }
             />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/cart" element={<CartPage />} />
+            <Route
+              path="/contact"
+              element={
+                <motion.div {...pageTransition}>
+                  <ContactPage />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <motion.div {...pageTransition}>
+                  <CartPage />
+                </motion.div>
+              }
+            />
             <Route
               path="/checkout"
               element={
                 <ProtectedRoute fallback={SignInCheckout}>
-                  <CheckoutPage />
+                  <motion.div {...pageTransition}>
+                    <CheckoutPage />
+                  </motion.div>
                 </ProtectedRoute>
               }
             />
@@ -66,11 +100,20 @@ export default function App() {
               path="/auth/*"
               element={
                 <PublicRoute>
-                  <AuthPage />
+                  <motion.div {...pageTransition}>
+                    <AuthPage />
+                  </motion.div>
                 </PublicRoute>
               }
             />
-            <Route path="*" element={<NotFound />} />
+            <Route
+              path="*"
+              element={
+                <motion.div {...pageTransition}>
+                  <NotFound />
+                </motion.div>
+              }
+            />
           </Route>
         </Routes>
       </Suspense>

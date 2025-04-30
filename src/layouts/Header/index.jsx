@@ -4,6 +4,7 @@ import MobileMenuButton from "./MobileMenuButton";
 import MobileMenu from "./MobileMenu";
 import NavLinks from "./NavLinks";
 import DesktopNavIcons from "./DesktopNavIcons";
+import { AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [cartItems] = useState(3);
@@ -42,7 +43,9 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu Panel */}
-        {mobileOpen && <MobileMenu cartItems={cartItems} />}
+        <AnimatePresence mode="wait">
+          {mobileOpen && <MobileMenu cartItems={cartItems} />}
+        </AnimatePresence>
       </nav>
     </header>
   );
