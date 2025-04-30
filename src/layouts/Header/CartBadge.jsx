@@ -1,7 +1,8 @@
-import { useCart } from "../../contexts/CartContext";
+import CartContext from "../../contexts/CartContext";
+import { useContext } from "react";
 
 export default function CartBadge() {
-  const { cartCount } = useCart();
+  const { cartCount } = useContext(CartContext);
 
   if (cartCount === 0) return null;
 

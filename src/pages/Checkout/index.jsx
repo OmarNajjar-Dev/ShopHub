@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import stripePromise from "../../stripe";

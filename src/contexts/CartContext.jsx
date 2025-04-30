@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useState, useEffect } from "react";
+
+import { createContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
@@ -52,12 +53,17 @@ export function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, updateQuantity, cartCount }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        cartCount,
+      }}
     >
       {children}
     </CartContext.Provider>
   );
 }
 
-// Custom hook to use CartContext easily
-export const useCart = () => useContext(CartContext);
+export default CartContext;

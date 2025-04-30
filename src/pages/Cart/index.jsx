@@ -1,10 +1,11 @@
-import { useCart } from "../../contexts/CartContext";
+import CartContext from "../../contexts/CartContext";
+import { useContext } from "react";
 import EmptyCart from "./EmptyCart";
 import CartItem from "./CartItem";
 import OrderSummary from "./OrderSummary";
 
 export default function CartPage() {
-  const { cartItems, removeFromCart, updateQuantity } = useCart();
+  const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
