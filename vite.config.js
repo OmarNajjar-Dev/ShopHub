@@ -4,11 +4,16 @@ import tailwindcss from "@tailwindcss/vite";
 import compress from "vite-plugin-compression";
 
 export default ({ mode }) => {
-  const env = loadEnv(mode, import.meta.env.cwd(), "");
-  import.meta.env = { ...import.meta.env, ...env };
+  const env = loadEnv(mode, process.cwd(), "");
+
+  const defineEnv = {};
+  for (const key of Object.keys(env)) {
+    defineEnv[`process.env.${key}`] = JSON.stringify(env[key]);
+  }
 
   return defineConfig({
     plugins: [react(), tailwindcss(), compress()],
+    define: defineEnv,
     server: {
       proxy: {
         "/api": {

@@ -1,65 +1,55 @@
 /* eslint-disable react/prop-types */
 
 import { createContext, useState, useEffect } from "react";
+import {
+  addOrUpdateItem,
+  removeItemById,
+  updateItemQuantity,
+  computeCartCount,
+} from "../utils/cartUtils";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
+  // Load initial cart state from localStorage
   const [cartItems, setCartItems] = useState(() => {
-    const storedCart = localStorage.getItem("cart");
-    return storedCart ? JSON.parse(storedCart) : [];
+    const stored = localStorage.getItem("cart");
+    return stored ? JSON.parse(stored) : [];
   });
 
+  // Sync cart to localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  /**
+   * Add a product to the cart or increment its quantity
+   */
   const addToCart = (product) => {
-    setCartItems((prev) => {
-      const existingItem = prev.find((item) => item.id === product.id);
-      if (existingItem) {
-        return prev.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [
-        ...prev,
-        {
-          id: product.id,
-          title: product.name,
-          description: product.description,
-          price: product.price,
-          image: product.imageUrl,
-          quantity: 1,
-        },
-      ];
-    });
+    setCartItems((prev) => addOrUpdateItem(prev, product));
   };
 
+  /**
+   * Remove a product from the cart by its ID
+   */
   const removeFromCart = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    setCartItems((prev) => removeItemById(prev, id));
   };
 
+  /**
+   * Update the quantity of a specific product
+   */
   const updateQuantity = (id, quantity) => {
     if (quantity <= 0) return;
-    setCartItems((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, quantity } : item))
-    );
+    setCartItems((prev) => updateItemQuantity(prev, id, quantity));
   };
 
-  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  // Total count of all items in the cart
+  const cartCount = computeCartCount(cartItems);
 
   return (
     <CartContext.Provider
-      value={{
-        cartItems,
-        addToCart,
-        removeFromCart,
-        updateQuantity,
-        cartCount,
-      }}
+      value={{ cartItems, addToCart, removeFromCart, updateQuantity, cartCount }}
     >
       {children}
     </CartContext.Provider>
