@@ -1,4 +1,4 @@
-export const hours = [
+export const businessHours = [
   {
     day: "Monday - Friday",
     hours: "9:00 AM - 6:00 PM",
