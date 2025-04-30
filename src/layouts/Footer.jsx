@@ -64,7 +64,7 @@ export default function Footer() {
               <li className="space-x-1">
                 <span>Phone:</span>
                 <a
-                  to="tel:+966500000000"
+                  href="tel:+966500000000"
                   className="hover:text-white transition-colors"
                 >
                   (555) 123-4567
