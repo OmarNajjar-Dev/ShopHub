@@ -32,7 +32,6 @@ export default function Card({
           className="absolute top-2 right-2 p-2 rounded-full bg-white shadow hover:bg-gray-200 cursor-pointer"
           onClick={() => toggleFavorite(product)}
         >
-          {/* استخدام motion مع قلب التغيير */}
           <motion.div
             animate={isFavorite ? heartAnimation.animate : heartAnimation.exit}
             initial={heartAnimation.initial}
